@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/action_inicio" />
+
+        <item
+            android:id="@+id/nav_boletin"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/action_boletin" />
+
+        <item
+            android:id="@+id/nav_cerrar_session"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/action_cerrar_session" />
+
+    </group>
+
+</menu>

@@ -1,0 +1,38 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="titulo_app_left_bar">18dp</dimen>
+    <dimen name="lema_app_left_bar">11dp</dimen>
+    <dimen name="titulo_app_left_bar_padding_top">16dp</dimen>
+    <dimen name="app_left_bar_padding_left">10dp</dimen>
+    <dimen name="em4">4dp</dimen>
+    <dimen name="em8">8dp</dimen>
+    <dimen name="em10">10dp</dimen>
+    <dimen name="em12">12dp</dimen>
+    <dimen name="em14">14dp</dimen>
+    <dimen name="em16">16dp</dimen>
+    <dimen name="em24">24dp</dimen>
+    <dimen name="em32">32dp</dimen>
+    <dimen name="em64">64dp</dimen>
+    <dimen name="padding4dp">4dp</dimen>
+    <dimen name="padding6dp">6dp</dimen>
+    <dimen name="padding8dp">8dp</dimen>
+    <dimen name="tamanoImgHeader">100dp</dimen>
+
+    <!-- Cardview Hijos -->
+    <dimen name="cvTamanoImgHeaderHijos">32dp</dimen>
+    <dimen name="cvBottomMarginHijos">4dp</dimen>
+    <dimen name="cvRadioCornerHijos">8dp</dimen>
+
+    <!-- Cardview Menu -->
+    <dimen name="cvTamanoImgHeaderMenu">32dp</dimen>
+    <dimen name="cvBottomMarginMenu">4dp</dimen>
+    <dimen name="cvRadioCornerMenu">8dp</dimen>
+    <dimen name="cvTopPaddingMenu">6dp</dimen>
+
+</resources>

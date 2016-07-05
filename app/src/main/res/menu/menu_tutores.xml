@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_tareas"
+        android:orderInCategory="100"
+        android:title="@string/action_tareas"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_circulares"
+        android:orderInCategory="100"
+        android:title="@string/action_circulares"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_facturas"
+        android:orderInCategory="100"
+        android:title="@string/action_facturas"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_pagos"
+        android:orderInCategory="100"
+        android:title="@string/action_pagos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_boletas"
+        android:orderInCategory="100"
+        android:title="@string/action_boletas"
+        app:showAsAction="never" />
+</menu>
