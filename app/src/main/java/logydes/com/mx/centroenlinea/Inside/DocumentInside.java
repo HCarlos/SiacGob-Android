@@ -1,4 +1,4 @@
-package Inside;
+package logydes.com.mx.centroenlinea.Inside;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -8,7 +8,6 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,10 +23,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import logydes.com.mx.centroenlinea.R;
-import Utils.AppConfig;
-import Utils.AppController;
-import Utils.Utilidades;
+import logydes.com.mx.centroenlinea.Utils.AppConfig;
+import logydes.com.mx.centroenlinea.Utils.AppController;
+import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 /**
  * Created by devch on 17/06/16.

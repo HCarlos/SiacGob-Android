@@ -1,9 +1,8 @@
-package Adapter;
+package logydes.com.mx.centroenlinea.Adapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import Helper.Singleton;
-import logydes.com.mx.centroenlinea.Elemento;
-import Pojos.Lista_Elementos;
+import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Pojos.Lista_Elementos;
 import logydes.com.mx.centroenlinea.R;
-import Utils.Utilidades;
+import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 /**
  * Created by devch on 24/06/16.
@@ -85,7 +83,7 @@ public class Adapter_Lista_Elementos extends RecyclerView.Adapter<Adapter_Lista_
             public AdapterElementosViewHolder(View itemView) {
                 super(itemView);
                 IdElemento = 0;
-                tvElemento = (TextView) itemView.findViewById(R.id.tvElemento);
+                // tvElemento = (TextView) itemView.findViewById(R.id.tvElemento);
                 lyElementos = (LinearLayout) itemView.findViewById(R.id.lyElementos);
 
             }

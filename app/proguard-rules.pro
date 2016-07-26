@@ -15,3 +15,24 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn
+
+-ignorewarnings
+
+-keepattributes Signature
+-keepattributes SetJavaScriptEnabled
+-keepattributes JavascriptInterface
+-keepattributes InlinedApi
+-keepattributes SourceFile,LineNumberTable
+-keepattributes *Annotation*
+
+-keepclassmembers class **.*$MyJavascriptInterface {
+    *;
+}
+-keepclassmembers class **.*$JavaScriptInterface {
+    *;
+}
+
+-keep public class **.*$MyJavascriptInteface
+-keep public class **.*$JavaScriptInterface

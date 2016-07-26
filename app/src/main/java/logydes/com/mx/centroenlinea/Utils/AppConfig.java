@@ -1,4 +1,4 @@
-package Utils;
+package logydes.com.mx.centroenlinea.Utils;
 
 /**
  * Created by devch on 15/06/16.
@@ -9,7 +9,7 @@ public class AppConfig {
     public static String TEXT_HTML = "text/html";
     public static String UTF_8 = "UTF-8";
 
-    public static String URL_LOGIN = "http://platsource.mx/getLoginUserMobile/";
+    public static String URL_LOGIN = "http://siac.tabascoweb.com/php/01/setAndroidLogin.php";
 
     // Server user register url
     public static String URL_REGISTER = "http://192.168.0.102/android_login_api/register.php";

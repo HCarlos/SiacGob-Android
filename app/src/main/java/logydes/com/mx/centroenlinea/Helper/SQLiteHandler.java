@@ -1,4 +1,4 @@
-package Helper;
+package logydes.com.mx.centroenlinea.Helper;
 
 /**
  * Created by devch on 15/06/16.
@@ -71,13 +71,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + KEY_USER_DATA + " TEXT UNIQUE, "
                 + KEY_USER_USERNAME + " TEXT, "
                 + KEY_USER_IDUSER + " TEXT, "
-                + KEY_USER_IDEMP + " TEXT, "
-                + KEY_USER_EMPRESA + " TEXT, "
-                + KEY_USER_IDUSERNIVELACCESO + " TEXT, "
-                + KEY_USER_REGISTROSPORPAGINA + " TEXT, "
-                + KEY_USER_CLAVE + " TEXT, "
-                + KEY_USER_NOMBRECOMPLETOUSUARIO + " TEXT, "
-                + KEY_USER_PARAM1 + " TEXT, "
                 + KEY_USER_MSG + " TEXT" + ");";
 
         db.execSQL(CREATE_LOGIN_TABLE);
@@ -104,43 +97,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        //String[] ar = data.split("|");
-        StringTokenizer ar = new StringTokenizer(data, "|");
-
-        String sKEY_USER_IDUSER = ar.nextToken();
-        String uno = ar.nextToken();
-        String sKEY_USER_IDEMP = ar.nextToken();
-        String sKEY_USER_EMPRESA = ar.nextToken();
-        // String sKEY_USER_IDUSERNIVELACCESO = ar.nextToken();
-        String sKEY_USER_REGISTROSPORPAGINA = ar.nextToken();
-        String sKEY_USER_CLAVE = ar.nextToken();
-        String sKEY_USER_PARAM1 = ar.nextToken();
-        String sKEY_USER_NOMBRECOMPLETOUSUARIO = ar.nextToken();
-
-        Log.d(TAG, "KEY_USER_IDUSER: " + sKEY_USER_IDUSER);
-        Log.d(TAG, "KEY_USER_IDEMP: " + sKEY_USER_IDEMP);
-        Log.d(TAG, "KEY_USER_EMPRESA: " + sKEY_USER_EMPRESA);
-        Log.d(TAG, "KEY_USER_IDUSERNIVELACCESO: " + sKEY_USER_EMPRESA);
-        Log.d(TAG, "KEY_USER_REGISTROSPORPAGINA: " + sKEY_USER_REGISTROSPORPAGINA);
-        Log.d(TAG, "KEY_USER_CLAVE: " + sKEY_USER_CLAVE);
-        Log.d(TAG, "KEY_USER_NOMBRECOMPLETOUSUARIO: " + sKEY_USER_NOMBRECOMPLETOUSUARIO);
-        Log.d(TAG, "KEY_USER_PARAM1: " + sKEY_USER_PARAM1);
+        Log.d(TAG, "KEY_USER_IDUSER: " + data);
 
         values.put(KEY_USER_LABEL, label);
         values.put(KEY_USER_DATA, data);
         values.put(KEY_USER_MSG, msg);
 
         values.put(KEY_USER_USERNAME, label);
-        values.put(KEY_USER_IDUSER, sKEY_USER_IDUSER );
-        values.put(KEY_USER_IDEMP, sKEY_USER_IDEMP );
-        values.put(KEY_USER_EMPRESA, sKEY_USER_EMPRESA );
-        values.put(KEY_USER_IDUSERNIVELACCESO, sKEY_USER_EMPRESA );
-
-        values.put(KEY_USER_REGISTROSPORPAGINA, sKEY_USER_REGISTROSPORPAGINA );
-        values.put(KEY_USER_CLAVE, sKEY_USER_CLAVE );
-        values.put(KEY_USER_NOMBRECOMPLETOUSUARIO, sKEY_USER_NOMBRECOMPLETOUSUARIO );
-        values.put(KEY_USER_PARAM1, sKEY_USER_PARAM1 );
-
+        values.put(KEY_USER_IDUSER, data);
 
         // Inserting Row
         long id = db.insert(TABLE_USER, null, values);
@@ -162,32 +126,24 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
 
+            Log.w(TAG,"0: "+cursor.getString(0));
+            Log.w(TAG,"1: "+cursor.getString(1));
+            Log.w(TAG,"2: "+cursor.getString(2));
+            Log.w(TAG,"3: "+cursor.getString(3));
+            Log.w(TAG,"4: "+cursor.getString(4));
+            Log.w(TAG,"5: "+cursor.getString(5));
+
             user.put(KEY_USER_LABEL, cursor.getString(1));
             user.put(KEY_USER_DATA, cursor.getString(2));
-            user.put(KEY_USER_MSG, cursor.getString(12));
-            user.put(KEY_USER_USERNAME, cursor.getString(3));
-            user.put(KEY_USER_IDUSER, cursor.getString(4) );
-            user.put(KEY_USER_IDEMP, cursor.getString(5));
-            user.put(KEY_USER_EMPRESA, cursor.getString(6));
-            user.put(KEY_USER_IDUSERNIVELACCESO, cursor.getString(7));
-            user.put(KEY_USER_REGISTROSPORPAGINA, cursor.getString(8));
-            user.put(KEY_USER_CLAVE, cursor.getString(9));
-            user.put(KEY_USER_NOMBRECOMPLETOUSUARIO, cursor.getString(10));
-            user.put(KEY_USER_PARAM1, cursor.getString(11));
+            user.put(KEY_USER_MSG, cursor.getString(5));
+            user.put(KEY_USER_USERNAME, cursor.getString(1));
+            user.put(KEY_USER_IDUSER, cursor.getString(2) );
 
             Singleton singleton = new Singleton(
                     0,
                     Integer.valueOf(user.get(KEY_USER_IDUSER)),
-                    Integer.valueOf(user.get(KEY_USER_IDEMP)),
-                    Integer.valueOf(user.get(KEY_USER_IDUSERNIVELACCESO)),
-                    Integer.valueOf(user.get(KEY_USER_CLAVE)),
-                    Integer.valueOf(user.get(KEY_USER_PARAM1)),
-                    Integer.valueOf(user.get(KEY_USER_REGISTROSPORPAGINA)),
-                    false,
-                    user.get(KEY_USER_EMPRESA),
-                    user.get(KEY_USER_USERNAME),
-                    "",
-                    user.get(KEY_USER_NOMBRECOMPLETOUSUARIO)
+                    user.get(KEY_USER_USERNAME)
+
             );
 
         }

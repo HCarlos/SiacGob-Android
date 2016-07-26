@@ -29,10 +29,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import Helper.SQLiteHandler;
-import Helper.SessionManager;
-import Utils.AppConfig;
-import Utils.AppController;
+import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
+import logydes.com.mx.centroenlinea.Helper.SessionManager;
+import logydes.com.mx.centroenlinea.Utils.AppConfig;
+import logydes.com.mx.centroenlinea.Utils.AppController;
 
 public class LoginActivity extends AppCompatActivity {
     //private static final String TAG = RegisterActivity.class.getSimpleName();
@@ -43,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
+    private String uuid;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -58,6 +60,9 @@ public class LoginActivity extends AppCompatActivity {
         // setSupportActionBar(miActionBar);
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        uuid = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -139,6 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (!error) {
 
                         // Now store the user in SQLite
+
                         String label = rec.getString("label");
                         String data = rec.getString("data");
 
@@ -186,16 +192,14 @@ public class LoginActivity extends AppCompatActivity {
                 // Posting parameters to login url
                 // TelephonyManager tManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 
-                String uuid = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                        Settings.Secure.ANDROID_ID);
                 Log.e(TAG,"ANDROID ID: "+uuid);
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username", email);
-                params.put("passwordL", password);
-                params.put("UUID", uuid);
-                params.put("tD", "2");
-                params.put("device_token", uuid);
+                params.put("password", password);
+                params.put("tokenuser", uuid);
+                // params.put("tD", "2");
+                // params.put("device_token", uuid);
 
                 return params;
             }

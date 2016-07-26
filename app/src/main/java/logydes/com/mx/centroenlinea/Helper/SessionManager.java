@@ -1,4 +1,4 @@
-package Helper;
+package logydes.com.mx.centroenlinea.Helper;
 
 /**
  * Created by devch on 15/06/16.

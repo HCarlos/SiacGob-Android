@@ -1,4 +1,4 @@
-package Pojos;
+package logydes.com.mx.centroenlinea.Pojos;
 
 /**
  * Created by devch on 23/06/16.

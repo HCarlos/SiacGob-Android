@@ -1,17 +1,8 @@
 package logydes.com.mx.centroenlinea;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-
-import DB.dbHijos;
-import DB.dbLista_Elementos;
-import Utils.AppConfig;
 
 public class ListaElementos extends AppCompatActivity {
     private int IdMenu;

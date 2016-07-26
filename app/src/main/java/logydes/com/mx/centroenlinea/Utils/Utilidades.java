@@ -1,6 +1,5 @@
-package Utils;
+package logydes.com.mx.centroenlinea.Utils;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 
 /**

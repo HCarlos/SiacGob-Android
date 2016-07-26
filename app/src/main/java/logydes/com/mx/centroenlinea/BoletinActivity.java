@@ -2,18 +2,11 @@ package logydes.com.mx.centroenlinea;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -27,13 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import Utils.AppConfig;
-import Utils.AppController;
-import Utils.Utilidades;
+import logydes.com.mx.centroenlinea.Utils.AppController;
+import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 public class BoletinActivity extends AppCompatActivity {
 

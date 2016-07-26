@@ -1,14 +1,8 @@
-package DB;
-
-/**
- * Created by devch on 23/06/16.
- */
+package logydes.com.mx.centroenlinea.DB;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,33 +20,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import Adapter.AdapterHijos;
-import Helper.Singleton;
-import Pojos.Hijos;
-import logydes.com.mx.centroenlinea.R;
-import Utils.AppConfig;
-import Utils.AppController;
-import Utils.Utilidades;
+import logydes.com.mx.centroenlinea.Adapter.Adapter_Lista_Elementos;
+import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Pojos.Lista_Elementos;
+import logydes.com.mx.centroenlinea.Utils.AppController;
+import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 /**
- * Created by devch on 2/06/16.
+ * Created by devch on 24/06/16.
  */
-public class dbHijos {
+
+public class dbLista_Elementos {
     private static final String TAG = "RESPUESTA";
     private ProgressDialog pDialog;
     private Utilidades Utl;
     private Context context;
-    private ArrayList<Hijos> mm;
+    private ArrayList<Lista_Elementos> mm;
     private RecyclerView listaMM;
-    private Activity  activity;
-    private AdapterHijos mad;
+    private Activity activity;
+    private Adapter_Lista_Elementos mad;
+    private int Type;
 
-    public dbHijos(Context context, Activity act) {
+    public dbLista_Elementos(Context context, Activity act) {
         this.context = context;
         this.activity = act;
 
         /*
-        listaMM = (RecyclerView) act.findViewById(R.id.rvHijos);
+        listaMM = (RecyclerView) act.findViewById(R.id.rvListaElementos);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaMM.setLayoutManager(llm);
@@ -60,8 +54,12 @@ public class dbHijos {
 
     }
 
-    public void obtenerDatos(){
+    public void obtenerDatos(String strURL, int _Type){
+
+        Type = _Type;
+
         String tag_string_req = "req_login";
+
         pDialog = new ProgressDialog(activity);
         pDialog.setCancelable(false);
         pDialog.setMessage("Cargando...");
@@ -71,12 +69,12 @@ public class dbHijos {
         // Log.e(TAG, AppConfig.URL_GET_HIJOS );
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_GET_HIJOS, new Response.Listener<String>() {
+                strURL, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Utl.hideDialog();
-
+                Log.e(TAG, response );
                 try {
                     JSONArray jObj = new JSONArray(response);
                     JSONObject rec = jObj.getJSONObject(0);
@@ -87,20 +85,28 @@ public class dbHijos {
                     if (!msg.equals("OK")) error = true;
 
                     if (!error) {
-                        ArrayList<Hijos> MM = new ArrayList<Hijos>();
+                        ArrayList<Lista_Elementos> MM = new ArrayList<Lista_Elementos>();
                         for (int i = 0;  i < jObj.length(); i++ ) {
                             rec = jObj.getJSONObject(i);
-                            int idalu = rec.getInt("data");
-                            String nombreAlu = rec.getString("label");
-                            String grupo = rec.getString("grupo");
-                            msg = rec.getString("msg");
+                            int idelemento = 0;
+                            String label = "";
+                            switch (Type){
+                                case 0:
+                                    idelemento = rec.getInt("idtarea");
+                                    label = rec.getString("titulo_tarea");
+                                    break;
+                                case 1:
+                                    idelemento = rec.getInt("idcommensajedestinatario");
+                                    label = rec.getString("titulo_mensaje");
+                                    break;
+                            }
 
-                            MM.add( new Hijos( idalu,nombreAlu,grupo,msg) );
+                            MM.add( new Lista_Elementos( idelemento,label) );
                         }
 
-                        Singleton.setRsHijos(MM);
+                        Singleton.setRsElementos(MM);
 
-                        mad = new AdapterHijos(activity);  // new AdapterHijos(MM,activity);
+                        mad = new Adapter_Lista_Elementos(activity);  // new AdapterLista_Elementos(MM,activity);
                         listaMM.setAdapter(mad);
 
 
@@ -130,7 +136,21 @@ public class dbHijos {
             protected Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("username", Singleton.getUsername());
+                /// Log.e(TAG,String.valueOf(Type));
+                Log.e(TAG,String.valueOf(Singleton.getIdAlu()));
+                Log.e(TAG,Singleton.getUsername());
+                if (Type == 0){
+                    params.put("username", Singleton.getUsername());
+                    params.put("sts", "0");
+                    params.put("iduseralu", String.valueOf( Singleton.getIdAlu() ) );
+                    params.put("tipoconsulta", String.valueOf( Type ) );
+                }
+                if (Type == 1){
+                    params.put("username", Singleton.getUsername());
+                    params.put("sts", "0");
+                    params.put("iduseralu", String.valueOf( Singleton.getIdAlu() ) );
+                    params.put("tipoconsulta", String.valueOf( Type ) );
+                }
                 return params;
 
             }
@@ -141,8 +161,8 @@ public class dbHijos {
 
     }
 
-    public void resfreshHijos(){
-        mad = new AdapterHijos(activity);  // new AdapterHijos(MM,activity);
+    public void resfresh_Lista_Elementos(){
+        mad = new Adapter_Lista_Elementos(activity);  // new AdapterLista_Elementos(MM,activity);
         listaMM.setAdapter(mad);
     }
 

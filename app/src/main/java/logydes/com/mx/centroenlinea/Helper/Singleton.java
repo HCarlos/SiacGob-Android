@@ -1,11 +1,11 @@
-package Helper;
+package logydes.com.mx.centroenlinea.Helper;
 
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import Pojos.Lista_Elementos;
-import Pojos.Hijos;
+import logydes.com.mx.centroenlinea.Pojos.Lista_Elementos;
+import logydes.com.mx.centroenlinea.Pojos.Hijos;
 
 /**
  * Created by devch on 22/06/16.
@@ -38,24 +38,10 @@ public class Singleton {
 
     public Singleton() { }
 
-    public Singleton(int modulo, int idUser, int idEmp, int idUserNivelAcceso, int clave, int param1, int registrosPorPagina, boolean isDelete, String empresa, String username, String password, String nombreCompletoUsuario) {
+    public Singleton(int modulo, int idUser, String username) {
         Modulo = modulo;
         IdUser = idUser;
-        IdEmp = idEmp;
-        IdUserNivelAcceso = idUserNivelAcceso;
-        Clave = clave;
-        Param1 = param1;
-        RegistrosPorPagina = registrosPorPagina;
-        IsDelete = isDelete;
-        Empresa = empresa;
         Username = username;
-        Password = password;
-        NombreCompletoUsuario = nombreCompletoUsuario;
-        rsHijos = new ArrayList<Hijos>();
-        rsHijosSize = 0;
-        IdAlu = 0;
-        rsElementos = new ArrayList<Lista_Elementos>();
-        rsElementosSize = 0;
     }
 
     public static String getPathPList() {

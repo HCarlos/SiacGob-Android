@@ -2,15 +2,12 @@ package logydes.com.mx.centroenlinea;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
@@ -24,16 +21,10 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.ArrayList;
-
-import Adapter.AdapterHijos;
-import DB.dbHijos;
-import Helper.SQLiteHandler;
-import Helper.SessionManager;
-import Helper.Singleton;
-import Inside.DocumentInside;
-import Pojos.Hijos;
-import Utils.AppConfig;
+import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
+import logydes.com.mx.centroenlinea.Helper.SessionManager;
+import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Inside.DocumentInside;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,11 +50,13 @@ public class MainActivity extends AppCompatActivity
 
         db = new SQLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
-        // tv = (TextView) findViewById(R.id.bienvenida);
+        tv = (TextView) findViewById(R.id.bienvenida);
 
         if (session.isLoggedIn() && singleton.getRsHijosSize() <= 0) {
+            // db.deleteUsers();
             db.getUserDetails();
-            String nc = singleton.getNombreCompletoUsuario() ;
+            String nc = singleton.getUsername();
+            Log.d(TAG,nc);
             tv.setText( "Bienvenid@ " + nc );
         }
 
@@ -81,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         // String email = user.get("email");
 
 
+/*
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -90,10 +84,11 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
 
         toggle.syncState();
+*/
 
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        // navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // navigationView.setNavigationItemSelectedListener(this);
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
