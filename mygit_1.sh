@@ -11,7 +11,7 @@ git status
 
 git add .
 
-git commit -m "Form Login Is OK"
+git commit -m "Design Principal is OK"
 
 git push -u origin master --force
 

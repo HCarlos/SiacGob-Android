@@ -8,11 +8,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,7 +63,16 @@ public class MainActivity extends AppCompatActivity
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (toolbar != null){
+            setSupportActionBar(toolbar);
+        }
+
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        // Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
+        // setSupportActionBar(miActionBar);
+
 
         // webview = (WebView) findViewById(R.id.webview);
 
@@ -73,8 +84,8 @@ public class MainActivity extends AppCompatActivity
 
         // String email = user.get("email");
 
-
 /*
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -84,8 +95,8 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
 
         toggle.syncState();
-*/
 
+*/
 
         // navigationView = (NavigationView) findViewById(R.id.nav_view);
         // navigationView.setNavigationItemSelectedListener(this);
@@ -95,6 +106,47 @@ public class MainActivity extends AppCompatActivity
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return getMenu(item);
+    }
+
+
+    public boolean getMenu(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_Login:
+                Toast.makeText(getBaseContext(),"Uno",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_imagenes:
+                Toast.makeText(getBaseContext(),"Dos",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_close_session:
+                Toast.makeText(getBaseContext(),"Refresh",Toast.LENGTH_SHORT).show();
+                break;
+            /*
+            case R.id.mnuContact:
+                //Toast.makeText(getBaseContext(),"Uno",Toast.LENGTH_SHORT).show();
+                intent = new Intent(Main2Activity.this,ContactActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.mnuAbout:
+                intent = new Intent(Main2Activity.this,AboutActivity.class);
+                startActivity(intent);
+                break;
+            */
+        }
+        return true;
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -106,30 +158,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        Log.e("getIdUserNivelAcceso:", String.valueOf(singleton.getIdUserNivelAcceso() ) );
 
-        if ( session.isLoggedIn() && singleton.getIdUserNivelAcceso() == 7) { // Tutores
-            //getMenuInflater().inflate(R.menu.menu_tutores, menu);
-            tv.setText( "Bienvenid@ " + singleton.getNombreCompletoUsuario() );
-            // dbHijos cm = new dbHijos(this, this);
-
-            if ( singleton.getRsHijosSize() <= 0) {
-                // cm.obtenerDatos();
-            }else{
-                // cm.resfreshHijos();
-            }
-
-        }else if ( session.isLoggedIn() && singleton.getIdUserNivelAcceso() == 5) { // Alu
-            // getMenuInflater().inflate(R.menu.menu_alumnos, menu);
-        }
-
-        return true;
-
-    }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -140,6 +170,8 @@ public class MainActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+*/
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
