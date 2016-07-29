@@ -17,24 +17,15 @@ public class Singleton {
         return ourInstance;
     }
 
-    private static String pathPList;
     private static int Modulo;
     private static int IdUser;
     private static int IdEmp;
-    private static int IdUserNivelAcceso;
-    private static int Clave;
-    private static int Param1;
-    private static int RegistrosPorPagina;
-    private static boolean IsDelete;
-    private static String Empresa;
     private static String Username;
     private static String Password;
-    private static String NombreCompletoUsuario;
-    private static ArrayList<Hijos> rsHijos;
-    private static int rsHijosSize;
-    private static int IdAlu;
-    private static ArrayList<Lista_Elementos> rsElementos;
-    private static int rsElementosSize;
+    private static double Longitude;
+    private static double Latitude;
+    private static String Nombre;
+    private static String Celular;
 
     public Singleton() { }
 
@@ -42,14 +33,10 @@ public class Singleton {
         Modulo = modulo;
         IdUser = idUser;
         Username = username;
-    }
-
-    public static String getPathPList() {
-        return pathPList;
-    }
-
-    public static void setPathPList(String pathPList) {
-        Singleton.pathPList = pathPList;
+        Latitude = 0.00;
+        Longitude = 0.00;
+        Nombre = "";
+        Celular = "";
     }
 
     public static int getModulo() {
@@ -76,54 +63,6 @@ public class Singleton {
         IdEmp = idEmp;
     }
 
-    public static int getIdUserNivelAcceso() {
-        return IdUserNivelAcceso;
-    }
-
-    public static void setIdUserNivelAcceso(int idUserNivelAcceso) {
-        IdUserNivelAcceso = idUserNivelAcceso;
-    }
-
-    public static int getClave() {
-        return Clave;
-    }
-
-    public static void setClave(int clave) {
-        Clave = clave;
-    }
-
-    public static int getParam1() {
-        return Param1;
-    }
-
-    public static void setParam1(int param1) {
-        Param1 = param1;
-    }
-
-    public static int getRegistrosPorPagina() {
-        return RegistrosPorPagina;
-    }
-
-    public static void setRegistrosPorPagina(int registrosPorPagina) {
-        RegistrosPorPagina = registrosPorPagina;
-    }
-
-    public static boolean isDelete() {
-        return IsDelete;
-    }
-
-    public static void setIsDelete(boolean isDelete) {
-        IsDelete = isDelete;
-    }
-
-    public static String getEmpresa() {
-        return Empresa;
-    }
-
-    public static void setEmpresa(String empresa) {
-        Empresa = empresa;
-    }
-
     public static String getUsername() {
         return Username;
     }
@@ -140,59 +79,40 @@ public class Singleton {
         Password = password;
     }
 
-    public static String getNombreCompletoUsuario() {
-        return NombreCompletoUsuario;
+    public static double getLongitude() {
+        return Longitude;
     }
 
-    public static void setNombreCompletoUsuario(String nombreCompletoUsuario) {
-        NombreCompletoUsuario = nombreCompletoUsuario;
+    public static void setLongitude(double longitude) {
+        Longitude = longitude;
     }
 
-    public static ArrayList<Hijos> getRsHijos() {
-        return rsHijos;
+    public static double getLatitude() {
+        return Latitude;
     }
 
-    public static void setRsHijos(ArrayList<Hijos> rsHijos) {
-        Singleton.rsHijos = rsHijos;
-        Singleton.setRsHijosSize();
+    public static void setLatitude(double latitude) {
+        Latitude = latitude;
     }
 
-    public static int getRsHijosSize() {
-        return rsHijosSize;
+    public static String getNombre() {
+        return Nombre;
     }
 
-    private static void setRsHijosSize() {
-        Singleton.rsHijosSize = rsHijos.size();
-        Log.e("rsHijosSize", String.valueOf(rsHijosSize)  );
+    public static void setNombre(String nombre) {
+        Nombre = nombre;
     }
 
-    public static int getIdAlu() {
-        return IdAlu;
+    public static String getCelular() {
+        return Celular;
     }
 
-    public static void setIdAlu(int idAlu) {
-        IdAlu = idAlu;
+    public static void setCelular(String celular) {
+        Celular = celular;
     }
 
-
-    public static ArrayList<Lista_Elementos> getRsElementos() {
-        return rsElementos;
+    public static void reset() {
+        ourInstance = new Singleton();
     }
-
-    public static void setRsElementos(ArrayList<Lista_Elementos> rsElementos) {
-        Singleton.rsElementos = rsElementos;
-        Singleton.setRsElementosSize();
-    }
-
-    public static int getRsElementosSize() {
-        return rsElementosSize;
-    }
-
-    private static void setRsElementosSize() {
-        Singleton.rsElementosSize = rsElementos.size();
-        Log.e("rsElementosSize", String.valueOf(rsElementosSize)  );
-    }
-
-
 
 }

@@ -11,7 +11,7 @@ git status
 
 git add .
 
-git commit -m "Design Principal is OK"
+git commit -m "LoginActivity and RegistryActivity is OK"
 
 git push -u origin master --force
 

@@ -32,7 +32,7 @@ public class Adapter_Lista_Elementos extends RecyclerView.Adapter<Adapter_Lista_
         // private dbElementos cm;
 
         public Adapter_Lista_Elementos(Activity activity){
-            this.MM = Singleton.getRsElementos(); // new ArrayList<Lista_Elementos>();
+            this.MM = new ArrayList<Lista_Elementos>(); // Singleton.getRsElementos(); // new ArrayList<Lista_Elementos>();
             this.activity = activity;
             // Log.e(TAG, String.valueOf(MM.size()));
         }

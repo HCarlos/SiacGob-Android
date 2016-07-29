@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
-    android:background="@color/colorBackground"
+    android:background="@color/white"
     >
 
     <include
@@ -26,57 +26,180 @@
         app:menu="@menu/activity_main_drawer"
         android:paddingTop="@dimen/activity_horizontal_margin"/>
     -->
-
     <LinearLayout
         android:id="@+id/llInicio"
-        android:layout_marginTop="@dimen/em128"
+        android:layout_marginTop="@dimen/em80"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:padding="@dimen/em16"
-        >
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eres Nuevo?"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        android:textColor="@color/colorNaranja"
-        />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/banner_logo_top_2"
+            />
 
-    <Button
-        android:id="@+id/txtRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Regístrate"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:shadowColor="@color/cardview_shadow_start_color"
-        />
+        <LinearLayout
+            android:layout_marginTop="@dimen/em16"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/em56"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimaryDark"
+            >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ya estas registrado?"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        android:textColor="@color/colorVerde"
-        android:layout_marginTop="@dimen/em32"
-        />
+            <ImageView
+                android:layout_width="@dimen/em40"
+                android:layout_height="@dimen/em40"
+                android:paddingTop="@dimen/em12"
+                android:src="@mipmap/ic_two_smartphones_40"/>
 
-    <Button
-        android:id="@+id/txtLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ingresar"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:shadowColor="@color/cardview_shadow_start_color"
-        />
+            <TextView
+                android:paddingTop="@dimen/em14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REPORTA TU SERVICIO"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/em24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Eres Nuevo?"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/colorNaranja"
+                android:textAlignment="center"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_sign_up_40"
+                    android:onClick="RegistryUser"/>
+
+                <TextView
+                    android:id="@+id/txtRegistro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/em40"
+                    android:text="Regístrate"
+                    android:textColor="@color/accent"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/em24"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:onClick="RegistryUser"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/em24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ya estas registrado?"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/colorVerde"
+                android:textAlignment="center"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_key_40"
+                    android:onClick="LoginUser"/>
+
+                <TextView
+                    android:id="@+id/txtLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/em40"
+                    android:text="Ingresar"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/em24"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:onClick="LoginUser"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
+    <!-- Opciones -->
+    <LinearLayout
+        android:id="@+id/llOpciones"
+        android:layout_marginTop="@dimen/em80"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/em16"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/em56"
+            android:orientation="horizontal"
+            android:background="@color/primary_dark">
+
+            <ImageView
+                android:layout_width="@dimen/em40"
+                android:layout_height="@dimen/em40"
+                android:src="@mipmap/ic_fuga_agua"/>
+
+            <TextView
+                android:id="@+id/txtFugaAgua"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/em40"
+                android:text="Fuga de Agua"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:textSize="@dimen/em24"
+                android:paddingTop="@dimen/em4"
+                android:paddingLeft="@dimen/em4"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </android.support.v4.widget.DrawerLayout>

@@ -31,6 +31,7 @@ import java.util.Map;
 
 import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
 import logydes.com.mx.centroenlinea.Helper.SessionManager;
+import logydes.com.mx.centroenlinea.Helper.Singleton;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
 
@@ -55,11 +56,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Toolbar miActionBar = (Toolbar) findViewById(R.id.appBar1);
-        // setSupportActionBar(miActionBar);
-
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         uuid = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -101,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
-                            "Please enter the credentials!", Toast.LENGTH_LONG)
+                            "Por favor, ingrese los datos que se requieren.", Toast.LENGTH_LONG)
                             .show();
                 }
             }
@@ -259,5 +255,16 @@ public class LoginActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
+    public boolean SendUsEmail(View view){
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"centroenlinea@villahermosa.gob.mx"});
+        email.putExtra(Intent.EXTRA_SUBJECT, "Correo de "+ Singleton.getUsername());
+        email.putExtra(Intent.EXTRA_TEXT, "Mensaje: ");
+        email.setType("message/rfc822");
+        startActivity(Intent.createChooser(email, "Elija un cliente de correo electrónico :"));
+        return true;
+    }
+
 }
 

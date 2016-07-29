@@ -50,7 +50,7 @@ public class DocumentInside {
         this.pDialog = new ProgressDialog(this.context);
         this.pDialog.setCancelable(false);
         this.Utl = new Utilidades(this.pDialog);
-        getDocument(AppConfig.URL_BOLETIN,AppConfig.URL_BOLETIN_TYPE);
+        getDocument(AppConfig.URL_LOGIN,0);
         return true;
 
     }

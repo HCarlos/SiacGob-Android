@@ -32,7 +32,7 @@ public class AdapterHijos extends RecyclerView.Adapter<AdapterHijos.AdapterHijos
     // private dbHijos cm;
 
     public AdapterHijos(Activity activity){
-        this.MM = Singleton.getRsHijos(); // new ArrayList<Hijos>();
+        this.MM = new ArrayList<Hijos>();
         this.activity = activity;
         // Log.e(TAG, String.valueOf(MM.size()));
     }

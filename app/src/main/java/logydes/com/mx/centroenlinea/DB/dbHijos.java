@@ -68,7 +68,7 @@ public class dbHijos {
         // Log.e(TAG, AppConfig.URL_GET_HIJOS );
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_GET_HIJOS, new Response.Listener<String>() {
+                AppConfig.URL_LOGIN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -95,7 +95,7 @@ public class dbHijos {
                             MM.add( new Hijos( idalu,nombreAlu,grupo,msg) );
                         }
 
-                        Singleton.setRsHijos(MM);
+                        // Singleton.setRsHijos(MM);
 
                         mad = new AdapterHijos(activity);  // new AdapterHijos(MM,activity);
                         listaMM.setAdapter(mad);

@@ -104,7 +104,7 @@ public class dbLista_Elementos {
                             MM.add( new Lista_Elementos( idelemento,label) );
                         }
 
-                        Singleton.setRsElementos(MM);
+                        // Singleton.setRsElementos(MM);
 
                         mad = new Adapter_Lista_Elementos(activity);  // new AdapterLista_Elementos(MM,activity);
                         listaMM.setAdapter(mad);
@@ -137,18 +137,18 @@ public class dbLista_Elementos {
 
                 Map<String, String> params = new HashMap<String, String>();
                 /// Log.e(TAG,String.valueOf(Type));
-                Log.e(TAG,String.valueOf(Singleton.getIdAlu()));
+                // Log.e(TAG,String.valueOf(Singleton.getIdAlu()));
                 Log.e(TAG,Singleton.getUsername());
                 if (Type == 0){
                     params.put("username", Singleton.getUsername());
                     params.put("sts", "0");
-                    params.put("iduseralu", String.valueOf( Singleton.getIdAlu() ) );
+                    // params.put("iduseralu", String.valueOf( Singleton.getIdAlu() ) );
                     params.put("tipoconsulta", String.valueOf( Type ) );
                 }
                 if (Type == 1){
                     params.put("username", Singleton.getUsername());
                     params.put("sts", "0");
-                    params.put("iduseralu", String.valueOf( Singleton.getIdAlu() ) );
+                    // params.put("iduseralu", String.valueOf( Singleton.getIdAlu() ) );
                     params.put("tipoconsulta", String.valueOf( Type ) );
                 }
                 return params;

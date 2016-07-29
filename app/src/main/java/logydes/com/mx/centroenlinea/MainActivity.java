@@ -1,23 +1,21 @@
 package logydes.com.mx.centroenlinea;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -26,21 +24,22 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
 import logydes.com.mx.centroenlinea.Helper.SessionManager;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
-import logydes.com.mx.centroenlinea.Inside.DocumentInside;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "BLUE";
     private DrawerLayout drawer;
-    private NavigationView navigationView;
     private SQLiteHandler db;
     private SessionManager session;
-    private WebView webview;
+    private Context context;
 
     private GoogleApiClient client;
     private Singleton singleton;
-    private TextView tv;
+
+    private LinearLayout llInicio;
+    private LinearLayout llOpciones;
+
 
 
     @Override
@@ -48,18 +47,27 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+        llInicio = (LinearLayout) findViewById(R.id.llInicio);
+        llOpciones = (LinearLayout) findViewById(R.id.llOpciones);
+        // rlayout1.setVisibility(2);
+
         singleton = new Singleton();
 
         db = new SQLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
-        tv = (TextView) findViewById(R.id.bienvenida);
 
-        if (session.isLoggedIn() && singleton.getRsHijosSize() <= 0) {
+        if ( session.isLoggedIn() ) {
             // db.deleteUsers();
             db.getUserDetails();
             String nc = singleton.getUsername();
-            Log.d(TAG,nc);
-            tv.setText( "Bienvenid@ " + nc );
+            llInicio.setVisibility(View.INVISIBLE);
+            llOpciones.setVisibility(View.VISIBLE);
+
+        }else{
+            llOpciones.setVisibility(View.INVISIBLE);
+            llInicio.setVisibility(View.VISIBLE);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -69,44 +77,23 @@ public class MainActivity extends AppCompatActivity
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        // Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        // setSupportActionBar(miActionBar);
-
-
-        // webview = (WebView) findViewById(R.id.webview);
-
-        /*
-        HashMap<String, String> user = db.getUserDetails();
-        String username = user.get("label");
-        tv.setText( "Bienvenido " + username );
-        */
-
-        // String email = user.get("email");
-
-/*
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
-        // Esto cambio apartir de las nuevas versiones
-        //drawer.setDrawerListener(toggle);
-        drawer.addDrawerListener(toggle);
-
-        toggle.syncState();
-
-*/
-
-        // navigationView = (NavigationView) findViewById(R.id.nav_view);
-        // navigationView.setNavigationItemSelectedListener(this);
-
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+
+    public boolean LoginUser(View view){
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        return true;
+    }
+
+    public boolean RegistryUser(View view){
+        Intent intent = new Intent(MainActivity.this, RegistryActivity.class);
+        startActivity(intent);
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -122,26 +109,9 @@ public class MainActivity extends AppCompatActivity
 
     public boolean getMenu(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_Login:
-                Toast.makeText(getBaseContext(),"Uno",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.action_imagenes:
-                Toast.makeText(getBaseContext(),"Dos",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.action_close_session:
-                Toast.makeText(getBaseContext(),"Refresh",Toast.LENGTH_SHORT).show();
+                Alert(0);
                 break;
-            /*
-            case R.id.mnuContact:
-                //Toast.makeText(getBaseContext(),"Uno",Toast.LENGTH_SHORT).show();
-                intent = new Intent(Main2Activity.this,ContactActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.mnuAbout:
-                intent = new Intent(Main2Activity.this,AboutActivity.class);
-                startActivity(intent);
-                break;
-            */
         }
         return true;
     }
@@ -159,50 +129,52 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.action_tareas) {
-            Toast.makeText(this, "Lista_Elementos", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-*/
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        DocumentInside bi = new DocumentInside(webview,this);
-        String URL = "";
-        int Type = 0;
-        switch (id){
-            case R.id.nav_inicio:
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.nav_cerrar_session:
-                logoutUser();
-                return true;
-            case R.id.nav_boletin:
-                drawer.closeDrawer(GravityCompat.START);
-                return  bi.onCreateBoletin();
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return  bi.onCreateObject(URL, Type);
+        return  true;
 
     }
 
     private void logoutUser() {
         session.setLogin(false);
         db.deleteUsers();
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
+        // Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        // startActivity(intent);
+
+        llOpciones.setVisibility(View.INVISIBLE);
+        llInicio.setVisibility(View.VISIBLE);
+
+    }
+
+    private void Alert(final int Tipo){
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        switch (Tipo){
+                            case 0:
+                                logoutUser();
+                                break;
+                        }
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setCancelable(false);
+        builder.setTitle("Atención");
+        builder.setMessage("Desea cerrar su sesión?").setPositiveButton(R.string.option_yes, dialogClickListener)
+                .setNegativeButton(R.string.option_no, dialogClickListener).show();
     }
 
     @Override
@@ -253,4 +225,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+
+
 }
+
+
+

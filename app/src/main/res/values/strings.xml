@@ -21,14 +21,10 @@
     <string name="action_desarrollador">Desarrollador</string>
 
     <!-- Menu Tutores y Alumnos -->
-    <string name="action_tareas">Tareas</string>
-    <string name="action_circulares">Circulares</string>
-    <string name="action_facturas">Facturas</string>
-    <string name="action_pagos">Pagos</string>
-    <string name="action_boletas">Boleta</string>
+    <string name="action_close_session">Cerrar Sesión</string>
 
     <string name="title_activity_login">Ingresar al Sistema</string>
-    <string name="title_activity_boletin">Boletín Oficial</string>
+    <string name="title_activity_registry">Registro de Nuevo Usuario</string>
     <string name="title_activity_hijos">Alumnos</string>
     <string name="title_activity_menu">Alumnos</string>
 
@@ -43,11 +39,16 @@
     <string name="title_activity_lactivityn">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Username</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Login</string>
-    <string name="action_sign_in_short">Login</string>
-    <string name="title_activity_menu_hijos">MenuHijos</string>
+    <string name="prompt_email">Username (email):</string>
+    <string name="prompt_password">Password:</string>
+    <string name="prompt_re_email">Re-Username (email):</string>
+    <string name="prompt_re_password">Re-Password:</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="action_sign_in_message">Olvidaste tu contraseña? envía un email para iniciar con el proceso de recuperación de contraseña. </string>
+    <string name="action_registry_in">Guardar</string>
+    <string name="action_registry_in_short">Guardar</string>
+    <string name="action_registry_in_message">Proporcione un corre electrónico para validar sus datos y posteriormente vaya a su cuenta de correo y valide el email que le fue enviado. </string>
     <!--
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -72,5 +73,12 @@
 
     <string name="elemento">Elemento</string>
     <string name="idelemento">IdElemento</string>
+
+    <string name="ok_text">OK</string>
+    <string name="option_yes">Si</string>
+    <string name="option_no">No</string>
+
+    <string name="sendme_email">centroenlinea@villahermosa.gob.mx</string>
+
 
 </resources>
