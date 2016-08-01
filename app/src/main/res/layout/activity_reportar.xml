@@ -1,0 +1,129 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/em16"
+    android:paddingTop="@dimen/em32"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ReportarActivity">
+
+    <ScrollView
+        android:id="@+id/reportar_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/email_reportar_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/banner_logo_top_2"
+                />
+
+            <!-- Email 1 -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="@dimen/em16"
+                android:layout_width="match_parent"
+                android:background="@color/primary_light"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtReporte"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_reporte"
+                    android:maxLines="3"
+                    android:singleLine="false" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Tomamos la Foto o la escogemos de la Biblioteca -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cmdFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cámara"
+                    />
+
+                <Button
+                    android:id="@+id/cmdFototeca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fototeca"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_reporte"/>
+
+                <ImageView
+                    android:id="@+id/Foto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/camera_preview">
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnReportar"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorAccent"
+                android:text="@string/action_sign_in"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/action_reportar_in_message"
+                />
+
+            <TextView
+                android:id="@+id/lblEnvianosUnEmail"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:selectAllOnFocus="false"
+                android:linksClickable="false"
+                android:autoLink="all"
+                android:text="@string/sendme_email"
+                android:textColor="@color/colorPrimary"
+                android:onClick="SendUsEmail"
+                android:textSize="@dimen/em18"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

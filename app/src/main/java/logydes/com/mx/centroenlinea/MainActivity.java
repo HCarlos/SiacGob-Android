@@ -95,6 +95,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public boolean ReportService(View view){
+        Intent intent = new Intent(MainActivity.this, ReportarActivity.class);
+        startActivity(intent);
+        return true;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_principal, menu);

@@ -25,7 +25,7 @@
 
     <string name="title_activity_login">Ingresar al Sistema</string>
     <string name="title_activity_registry">Registro de Nuevo Usuario</string>
-    <string name="title_activity_hijos">Alumnos</string>
+    <string name="title_activity_reportar">Enviar un reporte</string>
     <string name="title_activity_menu">Alumnos</string>
 
     <string name="hint_email">Username</string>
@@ -43,12 +43,17 @@
     <string name="prompt_password">Password:</string>
     <string name="prompt_re_email">Re-Username (email):</string>
     <string name="prompt_re_password">Re-Password:</string>
+    <string name="lbl_reporte">Reporte:</string>
+    <string name="lbl_foto">Reporte:</string>
     <string name="action_sign_in">Ingresar</string>
     <string name="action_sign_in_short">Ingresar</string>
     <string name="action_sign_in_message">Olvidaste tu contraseña? envía un email para iniciar con el proceso de recuperación de contraseña. </string>
     <string name="action_registry_in">Guardar</string>
     <string name="action_registry_in_short">Guardar</string>
     <string name="action_registry_in_message">Proporcione un corre electrónico para validar sus datos y posteriormente vaya a su cuenta de correo y valide el email que le fue enviado. </string>
+    <string name="action_reportar_in">Guardar</string>
+    <string name="action_reportar_in_short">Guardar</string>
+    <string name="action_reportar_in_message">Proporcione un corre electrónico para validar sus datos y posteriormente vaya a su cuenta de correo y valide el email que le fue enviado. </string>
     <!--
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -79,6 +84,10 @@
     <string name="option_no">No</string>
 
     <string name="sendme_email">centroenlinea@villahermosa.gob.mx</string>
+
+    <string name="photo_source">Origen de tu foto</string>
+    <string name="camara">Cámara</string>
+    <string name="galeria">Galería</string>
 
 
 </resources>

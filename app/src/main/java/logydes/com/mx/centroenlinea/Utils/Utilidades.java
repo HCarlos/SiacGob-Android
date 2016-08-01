@@ -5,10 +5,12 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -34,6 +36,8 @@ public class Utilidades {
     private static int tipo;
     private static double current_lattitude;
     private static double current_longitude;
+    private static int TAKE_PICTURE = 1;
+    private static int SELECT_PICTURE = 2;
 
     public Utilidades(ProgressDialog pDialog) {
         this.pDialog = pDialog;
@@ -83,6 +87,22 @@ public class Utilidades {
         }
     }
 
+    public static void GetCamera(Activity _activity, int _tipo) {
+
+        activity = _activity;
+        tipo = _tipo;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA},
+                    123);
+        } else{
+            if ( tipo == 2 ){
+                Singleton.setIsCameraPresent(true);
+            }
+        }
+    }
+
     public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
         // super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 123) {
@@ -93,6 +113,10 @@ public class Utilidades {
                 }
                 if (tipo == 1) {
                     getSMSData();
+                }
+                if (tipo == 2) {
+                    // setFoto();
+                    Singleton.setIsCameraPresent(true);
                 }
 
             } else {
@@ -150,6 +174,18 @@ public class Utilidades {
         TelephonyManager tManager = (TelephonyManager) activity.getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
         Singleton.setNombre( tManager.getSimOperatorName() );
         Singleton.setCelular( tManager.getLine1Number() );
+    }
+
+    public static void setFoto(Activity activity) {
+        try {
+            Log.e("ENTRO","SI");
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+            int code = TAKE_PICTURE;
+            activity.startActivityForResult(intent, code);
+        } catch(Exception e) {
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
 

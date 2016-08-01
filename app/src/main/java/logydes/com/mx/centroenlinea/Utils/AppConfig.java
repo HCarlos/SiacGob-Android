@@ -12,4 +12,6 @@ public class AppConfig {
 
     public static String URL_REGISTER = "http://siac.tabascoweb.com/registryAndroid/";
 
+    public static String URL_SEND_FOTO = "http://siac.tabascoweb.com/postDenuncia/";
+
 }

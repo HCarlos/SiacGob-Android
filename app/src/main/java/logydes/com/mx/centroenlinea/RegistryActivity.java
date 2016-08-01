@@ -26,7 +26,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +37,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
@@ -56,10 +53,7 @@ import logydes.com.mx.centroenlinea.Helper.SessionManager;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
-import logydes.com.mx.centroenlinea.Utils.GPSTracker;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
-
-import static android.location.LocationManager.*;
 
 public class RegistryActivity extends AppCompatActivity {
     //private static final String TAG = RegisterActivity.class.getSimpleName();
@@ -74,7 +68,6 @@ public class RegistryActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private String uuid;
     private LocationManager lm;
-    // private MyLocationListener myLocationListener;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -88,7 +81,6 @@ public class RegistryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registry);
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         Utilidades.GetGPS(this, lm, 0);
 
         // Utilidades.GetSMSData(this, lm, 1);
@@ -181,22 +173,21 @@ public class RegistryActivity extends AppCompatActivity {
                     // Check for error node in json
                     if (!error) {
 
-                        // Launch menu_tutores activity
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(RegistryActivity.this).create();
-                        alertDialog.setTitle("Gracias por registrarte");
-                        alertDialog.setMessage("Su registro se ha completado con éxito. Se le ha enviado un correo que debe validar para confirmar la recepción de este aviso.");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(RegistryActivity.this,
-                                                MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                        dialog.dismiss();
-                                    }
-                                });
-                        alertDialog.show();
+                        new AlertDialog.Builder(RegistryActivity.this)
+                            .setTitle("Gracias por registrarse")
+                            .setMessage("Se ha enviado un correo electrónico a la cuenta que acaba de proporcionar para que valide sus datos y pueda ingresar a la Plataforma.")
+                            .setCancelable(false)
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(RegistryActivity.this,
+                                            MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).create().show();
+
 
                     } else {
                         // Error in login. Get the error message
@@ -227,17 +218,24 @@ public class RegistryActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
 
-
                 Log.e(TAG, "ANDROID ID: " + uuid);
+
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username", email);
                 params.put("password", password);
-                params.put("nombre", "nombre ");
-                params.put("celular", "celular");
+
+                params.put("nombre", "Android");
+                params.put("celular", "Android");
+
                 params.put("idF", uuid);
+
                 params.put("latitud", Double.toString(Singleton.getLatitude()));
                 params.put("longitud", Double.toString(Singleton.getLongitude()));
                 params.put("message", Build.USER);
+
+                // params.put("tokenuser", uuid);
+                // params.put("tD", "2");
+                // params.put("device_token", uuid);
 
                 return params;
             }
@@ -267,6 +265,83 @@ public class RegistryActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(email, "Elija un cliente de correo electrónico :"));
         return true;
     }
+/*
+    public void GetGPS() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                ) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    123);
+        } else getLatLon();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 123) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted.
+                getLatLon();
+            } else {
+                // User refused to grant permission.
+            }
+        }
+    }
+
+    public void getLatLon() {
+
+
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
+        final LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                double longitude = location.getLongitude();
+                double latitude = location.getLatitude();
+                Log.e("LAT: ", Double.toString(latitude));
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+
+        };
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            // return;
+        }
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+
+        // double longitude = location.getLongitude();
+        // double latitude = location.getLatitude();
+
+
+    }
+
+
+*/
+
+
 
 }
 

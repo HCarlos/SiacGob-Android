@@ -195,6 +195,7 @@
                 android:textSize="@dimen/em24"
                 android:paddingTop="@dimen/em4"
                 android:paddingLeft="@dimen/em4"
+                android:onClick="ReportService"
                 />
 
         </LinearLayout>

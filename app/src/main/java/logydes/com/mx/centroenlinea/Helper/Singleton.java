@@ -27,6 +27,8 @@ public class Singleton {
     private static String Nombre;
     private static String Celular;
 
+    private static boolean isCameraPresent;
+
     public Singleton() { }
 
     public Singleton(int modulo, int idUser, String username) {
@@ -37,6 +39,7 @@ public class Singleton {
         Longitude = 0.00;
         Nombre = "";
         Celular = "";
+        isCameraPresent = false;
     }
 
     public static int getModulo() {
@@ -109,6 +112,14 @@ public class Singleton {
 
     public static void setCelular(String celular) {
         Celular = celular;
+    }
+
+    public static boolean isCameraPresent() {
+        return isCameraPresent;
+    }
+
+    public static void setIsCameraPresent(boolean isCameraPresent) {
+        Singleton.isCameraPresent = isCameraPresent;
     }
 
     public static void reset() {

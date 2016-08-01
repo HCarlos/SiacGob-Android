@@ -11,7 +11,7 @@ git status
 
 git add .
 
-git commit -m "LoginActivity and RegistryActivity is OK"
+git commit -m "Report Service Update 01"
 
 git push -u origin master --force
 
