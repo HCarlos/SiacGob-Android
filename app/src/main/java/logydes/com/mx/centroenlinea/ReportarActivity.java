@@ -1,128 +1,64 @@
 package logydes.com.mx.centroenlinea;
 
-import android.Manifest;
-import android.annotation.TargetApi;
+// import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Camera;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.Criteria;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.loopj.android.http.Base64;
-import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.SyncHttpClient;
-import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-
-// import org.apache.http.entity.mime.HttpMultipartMode;
-// import org.apache.http.entity.mime.MultipartEntity;
-// import org.apache.http.entity.mime.content.FileBody;
-// import org.apache.http.entity.mime.content.StringBody;
-
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOError;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.Provider;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
-import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
-import logydes.com.mx.centroenlinea.Helper.SessionManager;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
-import logydes.com.mx.centroenlinea.Utils.CameraPreview;
-import logydes.com.mx.centroenlinea.Utils.HttpFileUploader;
 import logydes.com.mx.centroenlinea.Utils.PhotoUtils;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 public class ReportarActivity extends AppCompatActivity {
-    //private static final String TAG = RegisterActivity.class.getSimpleName();
+    // private static final String TAG = ReportarActivity.class.getSimpleName();
     private static final String TAG = "RESPUESTA";
     private Button btnReportar;
-    private EditText inputEmail;
+    private EditText txtReporte;
     private ProgressDialog pDialog;
     private String uuid;
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private Camera mCamera;
-    private CameraPreview mCameraPreview;
-    private static int TAKE_PICTURE = 1;
-    private static int SELECT_PICTURE = 2;
-    private static String PATH_SAVE_PHOTO = "/CentroEnLinea/";
-    private static String NAME_PHOTO = "foto.jpg";
-    private String name = "";
     private Activity activity;
     private ImageView foto;
 
@@ -159,7 +95,7 @@ public class ReportarActivity extends AppCompatActivity {
         uuid = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
-        inputEmail = (EditText) findViewById(R.id.txtReporte);
+        txtReporte = (EditText) findViewById(R.id.txtReporte);
         foto = (ImageView) findViewById(R.id.Foto);
         btnReportar = (Button) findViewById(R.id.btnReportar);
         cmdTomarFoto = (Button) findViewById(R.id.cmdFoto);
@@ -191,9 +127,10 @@ public class ReportarActivity extends AppCompatActivity {
                     photo.delete();
                 } catch (Exception e) {
                     Log.v(getClass().getSimpleName(),
-                            "Can't create file to take picture!");
+                            "No se puedo crear la imagen!");
                 }
                 mImageUri = Uri.fromFile(photo);
+                pathphoto = mImageUri.toString();
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 startActivityForResult(intent, ACTIVITY_SELECT_FROM_CAMERA);
 
@@ -212,18 +149,18 @@ public class ReportarActivity extends AppCompatActivity {
         btnReportar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!pathphoto.trim().equalsIgnoreCase("")){
-                    // HttpFileUploader uploader = new HttpFileUploader(AppConfig.URL_SEND_FOTO, pathphoto);
-                    // uploader.doStart(fileInputStream);
+                if (mImageUri != null) {
+                    if (!pathphoto.trim().equalsIgnoreCase("")) {
 
-                    if (isNetworkConnected())
-                        // new CreateNewUser().execute();
-                        checkReportar("none","none");
-                    else
-                        Toast.makeText(getApplicationContext(), "Please connect to internet!", Toast.LENGTH_LONG).show();
+                        if (isNetworkConnected())
+                            checkReportar();
+                        else
+                            Toast.makeText(getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
 
 
-
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Ha ocurrido un error, intente de nuevo!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -317,20 +254,20 @@ public class ReportarActivity extends AppCompatActivity {
                                            Context myContext) throws Exception {
         File tempDir = myContext.getExternalCacheDir();
         tempDir = new File(tempDir.getAbsolutePath() + "/temp/");
-        //pathphoto = tempDir.
         if (!tempDir.exists()) {
             tempDir.mkdir();
         }
+        // pathphoto = tempDir.
         return File.createTempFile(part, ext, tempDir);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (mImageUri != null)
-            pathphoto = mImageUri.toString();
+        if (mImageUri != null) {
             outState.putString("Uri", mImageUri.toString());
-           Log.e("U    R     I:",pathphoto);
+            pathphoto = mImageUri.toString();
+        }
     }
 
     @Override
@@ -347,9 +284,13 @@ public class ReportarActivity extends AppCompatActivity {
         if (requestCode == ACTIVITY_SELECT_IMAGE && resultCode == RESULT_OK) {
             mImageUri = data.getData();
             getImage(mImageUri);
+            pathphoto = mImageUri.toString();
+            Log.e("U    R     I:", pathphoto);
         } else if (requestCode == ACTIVITY_SELECT_FROM_CAMERA
                 && resultCode == RESULT_OK) {
+            pathphoto = mImageUri.toString();
             getImage(mImageUri);
+
         }
     }
 
@@ -386,7 +327,7 @@ public class ReportarActivity extends AppCompatActivity {
     /**
      * function to verify login details in mysql db
      */
-    private void checkReportar(final String txtReporte, final String password) {
+    private void checkReportar() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -441,9 +382,10 @@ public class ReportarActivity extends AppCompatActivity {
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
+
         }) {
 
-            @TargetApi(Build.VERSION_CODES.KITKAT)
+            // @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
@@ -456,14 +398,19 @@ public class ReportarActivity extends AppCompatActivity {
                 byte[] byte_arr = stream.toByteArray();
                 String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
-                Log.e("BASE 64",image_str);
+                String txtDenuncia = txtReporte.getText().toString().trim();
+                if (txtDenuncia.equals(""))
+                    txtDenuncia = "Sin Comentario";
 
+                // Log.e("BASE 64",image_str);
+
+                String[] separated = Singleton.getUsername().split("@");
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("username", "username_android");
-                params.put("password", "denuncia_android");
+                params.put("username", Singleton.getUsername());
+                params.put("denuncia", txtDenuncia);
 
-                params.put("namex", "namex_Android");
+                params.put("namex", separated[0]);
                 params.put("phone", "phone_Android");
 
                 params.put("iD", uuid);
@@ -475,10 +422,6 @@ public class ReportarActivity extends AppCompatActivity {
                 params.put("domicilio", "domicilio_android");
 
                 params.put("userfile", image_str);
-
-                // params.put("tokenuser", uuid);
-                // params.put("tD", "2");
-                // params.put("device_token", uuid);
 
                 return params;
             }
@@ -496,36 +439,6 @@ public class ReportarActivity extends AppCompatActivity {
         if (ni == null) return false;
         else return true;
     }
-
-    private void send_image(){
-
-        /*
-        SyncHttpClient client = new SyncHttpClient();
-        RequestParams params = new RequestParams();
-        params.put("text", "some string");
-        params.put("image", new File(imagePath));
-
-        client.post("http://example.com", params, new TextHttpResponseHandler() {
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                // error handling
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                // success
-            }
-        });
-        */
-
-
-
-
-
-
-    }
-
-
 
     private void showDialog() {
         if (!pDialog.isShowing())

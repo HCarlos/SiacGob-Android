@@ -138,13 +138,11 @@ public class Utilidades {
 
     public static void getLatLon() {
 
-
         GPSTracker gps = new GPSTracker(activity);
         int status = 0;
         if (!gps.canGetLocation() ) {
             return;
         }
-
         status = GooglePlayServicesUtil
                 .isGooglePlayServicesAvailable(activity);
 
