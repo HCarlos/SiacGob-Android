@@ -7,6 +7,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -21,6 +23,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import logydes.com.mx.centroenlinea.Helper.Singleton;
 
@@ -53,7 +59,7 @@ public class Utilidades {
             this.pDialog.dismiss();
     }
 
-    public static void GetGPS(Activity _activity, LocationManager _lm, int _tipo) {
+    public static void GetGPS(Activity _activity, LocationManager _lm, int _tipo) throws IOException {
 
         activity = _activity;
         lm = _lm;
@@ -103,7 +109,7 @@ public class Utilidades {
         }
     }
 
-    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) throws IOException {
         // super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 123) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -136,7 +142,7 @@ public class Utilidades {
     }
 */
 
-    public static void getLatLon() {
+    public static void getLatLon() throws IOException {
 
         GPSTracker gps = new GPSTracker(activity);
         int status = 0;
@@ -149,6 +155,7 @@ public class Utilidades {
         if (status == ConnectionResult.SUCCESS) {
             current_lattitude = gps.getLatitude();
             current_longitude = gps.getLongitude();
+
             Log.d("LAT LON", "" + current_lattitude + "-"
                     + current_longitude);
 
@@ -166,6 +173,18 @@ public class Utilidades {
         Singleton.setLatitude(current_lattitude);
         Singleton.setLongitude(current_longitude);
 
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(activity, Locale.getDefault());
+
+        addresses = geocoder.getFromLocation(current_lattitude, current_longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String country = addresses.get(0).getCountryName();
+        String postalCode = addresses.get(0).getPostalCode();
+        Singleton.setDireccion(address + " " + city + " " + state + " " + country + " " + postalCode );
     }
 
     public static void getSMSData() {

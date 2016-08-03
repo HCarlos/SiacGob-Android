@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:padding="@dimen/em16"
-    android:paddingTop="@dimen/em32"
+    android:paddingTop="@dimen/em16"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".ReportarActivity">
@@ -22,12 +22,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/banner_logo_top_2"
-                />
-
             <!-- Email 1 -->
             <android.support.design.widget.TextInputLayout
                 android:layout_marginTop="@dimen/em16"
@@ -39,7 +33,7 @@
                     android:id="@+id/txtReporte"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/lbl_reporte"
+                    android:hint="@string/lbl_img_reporte"
                     android:maxLines="3"
                     android:singleLine="false" />
 
@@ -58,11 +52,19 @@
                     android:text="Cámara"
                     />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
                 <Button
                     android:id="@+id/cmdFototeca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fototeca"/>
+                    android:text="Fototeca"
+                    android:layout_gravity="right"
+                    />
 
             </LinearLayout>
 
@@ -74,12 +76,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_reporte"/>
+                    android:text="@string/lbl_img_reporte"/>
 
                 <ImageView
                     android:id="@+id/Foto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/em192"
+                    android:background="@color/divider"
                     />
 
                 <FrameLayout
@@ -98,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorAccent"
-                android:text="@string/action_sign_in"
+                android:text="@string/action_reportar_in"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 />

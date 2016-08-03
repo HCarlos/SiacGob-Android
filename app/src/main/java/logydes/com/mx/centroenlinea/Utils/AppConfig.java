@@ -14,4 +14,6 @@ public class AppConfig {
 
     public static String URL_SEND_FOTO = "http://siac.tabascoweb.com/postDenuncia/";
 
+    public static String URL_SOCKETIO = "http://siac.tabascoweb.com/php/01/mobile/android/stream.php";
+
 }

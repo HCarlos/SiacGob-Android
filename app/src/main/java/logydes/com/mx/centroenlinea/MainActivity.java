@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout llInicio;
     private LinearLayout llOpciones;
 
+    private LinearLayout llReparacionBaches;
+    private LinearLayout llFugaAgua;
+    private LinearLayout llRecolecionBasura;
+    private LinearLayout llReparacionLuminarias;
+
+
 
 
     @Override
@@ -51,6 +57,12 @@ public class MainActivity extends AppCompatActivity
 
         llInicio = (LinearLayout) findViewById(R.id.llInicio);
         llOpciones = (LinearLayout) findViewById(R.id.llOpciones);
+
+        llReparacionBaches = (LinearLayout) findViewById(R.id.llReparacionBaches);
+        llReparacionLuminarias = (LinearLayout) findViewById(R.id.llReparacionMinarias);
+        llFugaAgua = (LinearLayout) findViewById(R.id.llFugaAgua);
+        llRecolecionBasura = (LinearLayout) findViewById(R.id.llRecoleccionBasura);
+
         // rlayout1.setVisibility(2);
 
         singleton = new Singleton();
@@ -64,6 +76,38 @@ public class MainActivity extends AppCompatActivity
             String nc = singleton.getUsername();
             llInicio.setVisibility(View.INVISIBLE);
             llOpciones.setVisibility(View.VISIBLE);
+
+            llReparacionBaches.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Singleton.setModulo(2);
+                    ReportService();
+                }
+            });
+
+            llFugaAgua.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Singleton.setModulo(1);
+                    ReportService();
+                }
+            });
+
+            llRecolecionBasura.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Singleton.setModulo(0);
+                    ReportService();
+                }
+            });
+
+            llReparacionLuminarias.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Singleton.setModulo(3);
+                    ReportService();
+                }
+            });
 
         }else{
             llOpciones.setVisibility(View.INVISIBLE);
@@ -95,7 +139,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public boolean ReportService(View view){
+    public boolean ReportService(){
         Intent intent = new Intent(MainActivity.this, ReportarActivity.class);
         startActivity(intent);
         return true;

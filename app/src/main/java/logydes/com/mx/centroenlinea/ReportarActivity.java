@@ -22,6 +22,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,10 +93,16 @@ public class ReportarActivity extends AppCompatActivity {
         Utilidades.GetCamera(activity,2);
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Utilidades.GetGPS(this, lm, 0);
+        try {
+            Utilidades.GetGPS(this, lm, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         uuid = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
+
+        Singleton.setUUID(uuid);
 
         txtReporte = (EditText) findViewById(R.id.txtReporte);
         foto = (ImageView) findViewById(R.id.Foto);
@@ -354,11 +363,28 @@ public class ReportarActivity extends AppCompatActivity {
                     // Check for error node in json
                     if (!error) {
 
+                        WebView webviewer = (WebView) findViewById(R.id.webviewer);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                            webviewer.getSettings().setAllowUniversalAccessFromFileURLs(true);
+                        webviewer.getSettings().setJavaScriptEnabled(true);
+
+                        webviewer.loadUrl(AppConfig.URL_SOCKETIO);
+
+                        new AlertDialog.Builder(ReportarActivity.this)
+                                .setTitle("Gracias por tu reporte")
+                                .setMessage("En breve nos comunicaremos contigo vía correo electrónico.")
+                                .setCancelable(false)
+                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(ReportarActivity.this,
+                                                MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                        }).create().show();
+
                         // Launch menu_tutores activity
-                        Intent intent = new Intent(ReportarActivity.this,
-                                MainActivity.class);
-                        startActivity(intent);
-                        finish();
 
                     } else {
 
@@ -377,7 +403,7 @@ public class ReportarActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Reportar Error: " + error.getMessage());
+                Log.w(TAG, "Reportar Error::: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
@@ -411,17 +437,19 @@ public class ReportarActivity extends AppCompatActivity {
                 params.put("denuncia", txtDenuncia);
 
                 params.put("namex", separated[0]);
-                params.put("phone", "phone_Android");
+                params.put("phone", "Android");
 
                 params.put("iD", uuid);
 
                 params.put("la", Double.toString(Singleton.getLatitude()));
                 params.put("lo", Double.toString(Singleton.getLongitude()));
 
-                params.put("modulo", "0");
-                params.put("domicilio", "domicilio_android");
+                params.put("modulo", String.valueOf(Singleton.getModulo()));
+                params.put("domicilio", Singleton.getDireccion());
 
                 params.put("userfile", image_str);
+
+                Log.w("PARAMS", params.toString());
 
                 return params;
             }

@@ -26,6 +26,8 @@ public class Singleton {
     private static double Latitude;
     private static String Nombre;
     private static String Celular;
+    private static String UUID;
+    private static String Direccion;
 
     private static boolean isCameraPresent;
 
@@ -40,6 +42,7 @@ public class Singleton {
         Nombre = "";
         Celular = "";
         isCameraPresent = false;
+        UUID = "";
     }
 
     public static int getModulo() {
@@ -116,6 +119,22 @@ public class Singleton {
 
     public static boolean isCameraPresent() {
         return isCameraPresent;
+    }
+
+    public static String getUUID() {
+        return UUID;
+    }
+
+    public static String getDireccion() {
+        return Direccion;
+    }
+
+    public static void setDireccion(String direccion) {
+        Direccion = direccion;
+    }
+
+    public static void setUUID(String UUID) {
+        Singleton.UUID = UUID;
     }
 
     public static void setIsCameraPresent(boolean isCameraPresent) {

@@ -10,6 +10,7 @@
     <dimen name="lema_app_left_bar">11dp</dimen>
     <dimen name="titulo_app_left_bar_padding_top">16dp</dimen>
     <dimen name="app_left_bar_padding_left">10dp</dimen>
+    <dimen name="em2">2dp</dimen>
     <dimen name="em4">4dp</dimen>
     <dimen name="em8">8dp</dimen>
     <dimen name="em10">10dp</dimen>
@@ -21,6 +22,13 @@
     <dimen name="em24">24dp</dimen>
     <dimen name="em32">32dp</dimen>
     <dimen name="em40">40dp</dimen>
+    <dimen name="em42">42dp</dimen>
+    <dimen name="em44">44dp</dimen>
+    <dimen name="em46">46dp</dimen>
+    <dimen name="em48">48dp</dimen>
+    <dimen name="em50">50dp</dimen>
+    <dimen name="em52">52dp</dimen>
+    <dimen name="em54">54dp</dimen>
     <dimen name="em56">56dp</dimen>
     <dimen name="em64">64dp</dimen>
     <dimen name="em80">80dp</dimen>

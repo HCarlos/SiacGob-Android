@@ -43,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.security.Provider;
 import java.util.HashMap;
 import java.util.List;
@@ -81,7 +82,11 @@ public class RegistryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registry);
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Utilidades.GetGPS(this, lm, 0);
+        try {
+            Utilidades.GetGPS(this, lm, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Utilidades.GetSMSData(this, lm, 1);
 
