@@ -187,6 +187,13 @@
             android:background="@color/colorPrimary"
             android:layout_marginTop="@dimen/em16">
 
+            <ImageView
+                android:layout_width="@dimen/em40"
+                android:layout_height="@dimen/em40"
+                android:paddingTop="@dimen/em4"
+                android:paddingLeft="@dimen/em4"
+                android:src="@mipmap/ic_repair_user"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/em40"

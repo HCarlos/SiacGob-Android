@@ -16,4 +16,6 @@ public class AppConfig {
 
     public static String URL_SOCKETIO = "http://siac.tabascoweb.com/php/01/mobile/android/stream.php";
 
+    public static String URL_DOWNLOAD_IMAGES = "http://siac.tabascoweb.com/getPhotosUser/";
+
 }

@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_imagenes"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -22,15 +22,15 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <ImageView
-            android:id="@+id/myPictures"
-            android:layout_width="@dimen/em36"
-            android:layout_height="@dimen/em36"
-            android:src="@mipmap/ic_folder_images"
-            android:layout_alignParentRight="true"
-            android:foregroundGravity="right"
-            android:layout_gravity="right"
+                android:id="@+id/dellImages"
+                android:layout_width="@dimen/em36"
+                android:layout_height="@dimen/em36"
+                android:src="@mipmap/ic_trash_image"
+                android:layout_alignParentRight="true"
+                android:foregroundGravity="right"
+                android:layout_gravity="right"
                 android:layout_marginRight="@dimen/em20"
-            />
+                />
 
         </android.support.v7.widget.Toolbar>
 

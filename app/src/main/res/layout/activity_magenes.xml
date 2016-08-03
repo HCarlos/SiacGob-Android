@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ImagenesActivity"
+    android:orientation="vertical"
+    >
+
+    <!--
+    <TextView
+        android:id="@+id/tvOpcionesImagenes"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/em32"
+        android:layout_marginRight="@dimen/em8"
+        android:layout_marginLeft="@dimen/em8"
+        android:layout_marginBottom="@dimen/cvBottomMarginMenu"
+        android:layout_marginTop="@dimen/cvBottomMarginMenu"
+        android:paddingTop="@dimen/cvTopPaddingMenu"
+        android:paddingLeft="@dimen/padding8dp"
+        android:background="@drawable/round_corners"
+        android:textColor="@color/white"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:text="MIS IMÁGENES"
+
+        />
+    -->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvImagenes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/em32"
+        />
+
+
+</RelativeLayout>

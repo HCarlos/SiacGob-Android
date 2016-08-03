@@ -34,6 +34,7 @@ import logydes.com.mx.centroenlinea.Helper.SessionManager;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
+import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 public class LoginActivity extends AppCompatActivity {
     //private static final String TAG = RegisterActivity.class.getSimpleName();

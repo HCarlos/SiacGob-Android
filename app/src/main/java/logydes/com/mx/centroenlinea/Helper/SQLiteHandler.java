@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -117,42 +118,51 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * Getting user data from database
      * */
     public HashMap<String, String> getUserDetails() {
-        HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT  * FROM " + TABLE_USER;
+        try {
+            HashMap<String, String> user = new HashMap<String, String>();
+            String selectQuery = "SELECT  * FROM " + TABLE_USER;
 
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        // Move to first row
-        cursor.moveToFirst();
-        if (cursor.getCount() > 0) {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
 
-            Log.w(TAG,"0: "+cursor.getString(0));
-            Log.w(TAG,"1: "+cursor.getString(1));
-            Log.w(TAG,"2: "+cursor.getString(2));
-            Log.w(TAG,"3: "+cursor.getString(3));
-            Log.w(TAG,"4: "+cursor.getString(4));
-            Log.w(TAG,"5: "+cursor.getString(5));
+            // Move to first row
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0) {
 
-            user.put(KEY_USER_LABEL, cursor.getString(1));
-            user.put(KEY_USER_DATA, cursor.getString(2));
-            user.put(KEY_USER_MSG, cursor.getString(5));
-            user.put(KEY_USER_USERNAME, cursor.getString(1));
-            user.put(KEY_USER_IDUSER, cursor.getString(2) );
+                Log.w(TAG,"0: "+cursor.getString(0));
+                Log.w(TAG,"1: "+cursor.getString(1));
+                Log.w(TAG,"2: "+cursor.getString(2));
+                Log.w(TAG,"3: "+cursor.getString(3));
+                Log.w(TAG,"4: "+cursor.getString(4));
+                Log.w(TAG,"5: "+cursor.getString(5));
 
-            Singleton singleton = new Singleton(
-                    0,
-                    Integer.valueOf(user.get(KEY_USER_IDUSER)),
-                    user.get(KEY_USER_USERNAME)
+                user.put(KEY_USER_LABEL, cursor.getString(1));
+                user.put(KEY_USER_DATA, cursor.getString(2));
+                user.put(KEY_USER_MSG, cursor.getString(5));
+                user.put(KEY_USER_USERNAME, cursor.getString(1));
+                user.put(KEY_USER_IDUSER, cursor.getString(2) );
 
-            );
+                Singleton singleton = new Singleton(
+                        0,
+                        Integer.valueOf(user.get(KEY_USER_IDUSER)),
+                        user.get(KEY_USER_USERNAME)
+
+                );
+
+            }
+            Log.e(TAG, "Fetching user from Sqlite: " + user.toString());
+
+            cursor.close();
+            db.close();
+
+            return user;
+
+        }catch (SQLiteException e ){
+            SQLiteDatabase db = this.getWritableDatabase();
+            this.onUpgrade(db, 0, 0);
+            return this.getUserDetails();
 
         }
-        Log.e(TAG, "Fetching user from Sqlite: " + user.toString());
-
-        cursor.close();
-        db.close();
-
-        return user;
     }
 
     /**
@@ -165,6 +175,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         onUpgrade(db, 0, 0);
 
         db.close();
+
 
         Log.d(TAG, "Deleted all user info from sqlite");
     }

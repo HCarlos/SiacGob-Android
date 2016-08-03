@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="rectangle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mx.com.logydes.colegioarji.BoletinActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:orientation="vertical"
+    android:layout_marginRight="@dimen/em8"
+    android:layout_marginLeft="@dimen/em8"
+    android:layout_marginBottom="@dimen/cvBottomMarginHijos"
+    android:layout_marginTop="@dimen/cvBottomMarginHijos"
+    >
+
+    <corners android:radius="@dimen/em4" />
+    <solid android:color="@color/colorPrimary"
+        android:textColor="@color/colorAccent"/>
+</shape>

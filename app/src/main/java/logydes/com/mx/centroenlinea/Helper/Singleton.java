@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import logydes.com.mx.centroenlinea.Pojos.Imagenes;
 import logydes.com.mx.centroenlinea.Pojos.Lista_Elementos;
 import logydes.com.mx.centroenlinea.Pojos.Hijos;
 
@@ -28,6 +29,7 @@ public class Singleton {
     private static String Celular;
     private static String UUID;
     private static String Direccion;
+    private static ArrayList<Imagenes> arrImagenes;
 
     private static boolean isCameraPresent;
 
@@ -141,7 +143,16 @@ public class Singleton {
         Singleton.isCameraPresent = isCameraPresent;
     }
 
+    public static ArrayList<Imagenes> getArrImagenes() {
+        return arrImagenes;
+    }
+
+    public static void setArrImagenes(ArrayList<Imagenes> arrImagenes) {
+        Singleton.arrImagenes = arrImagenes;
+    }
+
     public static void reset() {
+        setArrImagenes(null);
         ourInstance = new Singleton();
     }
 

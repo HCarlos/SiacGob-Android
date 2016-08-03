@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
-import logydes.com.mx.centroenlinea.Adapter.AdapterHijos;
+import logydes.com.mx.centroenlinea.Adapter.AdapterMisImagenes;
 
 public class MenuHijos extends AppCompatActivity {
 
     private Context context;
     private RecyclerView listaMM;
-    private AdapterHijos mad;
+    private AdapterMisImagenes mad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

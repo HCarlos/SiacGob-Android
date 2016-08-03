@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.appindexing.Action;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout llFugaAgua;
     private LinearLayout llRecolecionBasura;
     private LinearLayout llReparacionLuminarias;
+    private ImageView myPicture;
 
 
 
@@ -118,6 +120,15 @@ public class MainActivity extends AppCompatActivity
         if (toolbar != null){
             setSupportActionBar(toolbar);
         }
+
+        myPicture = (ImageView) findViewById(R.id.myPictures);
+        myPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ImagenesActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -12,6 +12,7 @@
     <dimen name="app_left_bar_padding_left">10dp</dimen>
     <dimen name="em2">2dp</dimen>
     <dimen name="em4">4dp</dimen>
+    <dimen name="em6">6dp</dimen>
     <dimen name="em8">8dp</dimen>
     <dimen name="em10">10dp</dimen>
     <dimen name="em12">12dp</dimen>
@@ -20,7 +21,12 @@
     <dimen name="em18">18dp</dimen>
     <dimen name="em20">20dp</dimen>
     <dimen name="em24">24dp</dimen>
+    <dimen name="em26">26dp</dimen>
+    <dimen name="em28">28dp</dimen>
+    <dimen name="em30">30dp</dimen>
     <dimen name="em32">32dp</dimen>
+    <dimen name="em34">34dp</dimen>
+    <dimen name="em36">36dp</dimen>
     <dimen name="em40">40dp</dimen>
     <dimen name="em42">42dp</dimen>
     <dimen name="em44">44dp</dimen>

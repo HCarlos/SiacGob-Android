@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import logydes.com.mx.centroenlinea.Adapter.AdapterHijos;
+import logydes.com.mx.centroenlinea.Adapter.AdapterMisImagenes;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
 import logydes.com.mx.centroenlinea.Pojos.Hijos;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
@@ -42,7 +42,7 @@ public class dbHijos {
     private ArrayList<Hijos> mm;
     private RecyclerView listaMM;
     private Activity  activity;
-    private AdapterHijos mad;
+    private AdapterMisImagenes mad;
 
     public dbHijos(Context context, Activity act) {
         this.context = context;
@@ -97,7 +97,7 @@ public class dbHijos {
 
                         // Singleton.setRsHijos(MM);
 
-                        mad = new AdapterHijos(activity);  // new AdapterHijos(MM,activity);
+                        mad = new AdapterMisImagenes(activity);  // new AdapterMisImagenes(MM,activity);
                         listaMM.setAdapter(mad);
 
 
@@ -139,7 +139,7 @@ public class dbHijos {
     }
 
     public void resfreshHijos(){
-        mad = new AdapterHijos(activity);  // new AdapterHijos(MM,activity);
+        mad = new AdapterMisImagenes(activity);  // new AdapterMisImagenes(MM,activity);
         listaMM.setAdapter(mad);
     }
 
