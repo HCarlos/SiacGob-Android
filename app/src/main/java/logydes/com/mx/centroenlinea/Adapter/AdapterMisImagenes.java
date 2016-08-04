@@ -3,10 +3,12 @@ package logydes.com.mx.centroenlinea.Adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ import logydes.com.mx.centroenlinea.Pojos.Imagenes;
 import logydes.com.mx.centroenlinea.R;
 import logydes.com.mx.centroenlinea.Utils.PhotoUtils;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
+import logydes.com.mx.centroenlinea.ViewImageActivity;
 
 /**
  * Created by devch on 23/06/16.
@@ -64,25 +67,45 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
     @Override
     public void onBindViewHolder(final AdapterImagenesViewHolder cvh, int position) {
 
-        Imagenes mm = MM.get(position);
+        final Imagenes mm = MM.get(position);
 
-        String img = mm.getImagen();
-        getImage(img, cvh.iv_imagen);
+        final String imgPaso;
+        final String img = mm.getImagen_s();
+        imgPaso = getImage(img, cvh.iv_imagen);
 
-        /*
-        cvh.lyImagenes.setOnClickListener(new View.OnClickListener() {
+        int tiposo = mm.getSo_mobile();
+        String uri = "@mipmap/ic_android_logo";
+
+        switch (tiposo){
+            case 0:
+                cvh.iv_celular.setImageResource(R.mipmap.ic_ios_logo);
+                break;
+            case 1:
+                cvh.iv_celular.setImageResource(R.mipmap.ic_android_logo);
+                break;
+            default:
+                cvh.iv_celular.setImageResource(R.mipmap.ic_web_logo);
+                break;
+        }
+
+        cvh.txt_cfecha.setText(mm.getCfecha());
+        cvh.txt_denuncia.setText(mm.getDenuncia());
+
+
+
+        cvh.cmdFABIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Singleton.setIdAlu(mm.getData());
-                Intent intent = new Intent(activity, MenuImagenes.class);
-                intent.putExtra(activity.getString(R.string.nombreAlumno), mm.getLabel() );
-                intent.putExtra(activity.getString(R.string.idalu), Singleton.getIdAlu() );
-                intent.putExtra("grupo",mm.getGrupo());
+                //Singleton.setIdAlu(mm.getData());
+                Intent intent = new Intent(activity, ViewImageActivity.class);
+                intent.putExtra("imagen", img );
+                //intent.putExtra(activity.getString(R.string.idalu), Singleton.getIdAlu() );
+                //intent.putExtra("grupo",mm.getGrupo());
                 activity.startActivity(intent);
 
             }
         });
-        */
+
 
 
     }
@@ -94,20 +117,29 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
     public static class AdapterImagenesViewHolder extends RecyclerView.ViewHolder{
 
         ImageView iv_imagen;
+        ImageView iv_celular;
+        TextView txt_cfecha;
+        TextView txt_denuncia;
+        FloatingActionButton cmdFABIV;
 
 
         public AdapterImagenesViewHolder(View itemView) {
             super(itemView);
             iv_imagen = (ImageView) itemView.findViewById(R.id.iv_imagen);
+            iv_celular = (ImageView) itemView.findViewById(R.id.iv_celular);
+            txt_cfecha = (TextView) itemView.findViewById(R.id.txt_cfecha);
+            txt_denuncia = (TextView) itemView.findViewById(R.id.txt_denuncia);
+            cmdFABIV = (FloatingActionButton) itemView.findViewById(R.id.cmdFABIV);
 
         }
 
     }
 
-    public void getImage(String ImageName, ImageView photoViewer) {
+    public String getImage(String ImageName, ImageView photoViewer) {
         PhotoUtils photoUtils = new PhotoUtils(activity);
         File tempDir = activity.getExternalCacheDir();
-        tempDir = new File(tempDir.getAbsolutePath() + "/temp/"+ImageName);
+        String url = tempDir.getAbsolutePath() + "/temp/"+ImageName;
+        tempDir = new File(url);
         Uri uri = Uri.fromFile(tempDir);
         Bitmap bounds = photoUtils.getImage(uri);
         if (bounds != null) {
@@ -115,6 +147,7 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
         } else {
             Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
         }
+        return url;
     }
 
 

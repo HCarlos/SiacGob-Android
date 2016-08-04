@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:id="@+id/cardview_menu_hijos"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/em8"
-    android:layout_marginLeft="@dimen/em8"
-    card_view:cardCornerRadius="@dimen/cvRadioCornerHijos"
-    android:layout_marginBottom="@dimen/cvBottomMarginHijos"
-    >
+    android:layout_marginRight="@dimen/em16"
+    android:layout_marginLeft="@dimen/em16"
+    android:layout_marginBottom="@dimen/em16"
+    card_view:cardCornerRadius="@dimen/cvRadioCornerHijos">
 
     <LinearLayout
         android:id="@+id/lyHijos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:paddingBottom="@dimen/em16"
+        android:paddingTop="@dimen/em16"
+        android:paddingLeft="@dimen/em16"
+        android:paddingRight="@dimen/em16"
+        android:orientation="vertical"
         >
 
         <ImageView
@@ -22,9 +26,50 @@
             android:layout_height="200dp"
             android:layout_width="200dp"
             android:layout_weight="@string/cvImgLeftHijos"
-            android:paddingTop="@dimen/em8"/>
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_celular"
+                android:layout_width="@dimen/em12"
+                android:layout_height="@dimen/em12" />
+
+            <TextView
+                android:id="@+id/txt_cfecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/em12"
+                android:textColor="@color/secondary_text"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_denuncia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/em16"
+            />
 
 
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/cmdFABIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="@dimen/em20"
+        android:layout_marginRight="@dimen/em20"
+        android:src="@mipmap/ic_eye_96"
+        android:clickable="true"
+        />
 
 </android.support.v7.widget.CardView>

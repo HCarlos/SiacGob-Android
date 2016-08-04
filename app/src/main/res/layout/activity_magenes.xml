@@ -33,7 +33,8 @@
         android:id="@+id/rvImagenes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/em32"
+        android:paddingTop="@dimen/em16"
+        android:background="@drawable/border_shadow"
         />
 
 

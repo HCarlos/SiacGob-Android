@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            getImagenes bi = new getImagenes(this);
-            bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
+            // getImagenes bi = new getImagenes(this);
+            // bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
 
         }else{
             llOpciones.setVisibility(View.INVISIBLE);

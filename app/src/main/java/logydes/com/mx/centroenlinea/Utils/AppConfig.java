@@ -18,4 +18,7 @@ public class AppConfig {
 
     public static String URL_DOWNLOAD_IMAGES = "http://siac.tabascoweb.com/getPhotosUser/";
 
+    public static String URL_IMAGE_VIEW_ITEM = "http://siac.tabascoweb.com/imageViewItem/";
+
+
 }

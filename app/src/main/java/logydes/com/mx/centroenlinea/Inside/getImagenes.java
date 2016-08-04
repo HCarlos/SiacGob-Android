@@ -111,7 +111,9 @@ public class getImagenes {
 
                                 MM.add( new Imagenes( _idmdenuncia, _denuncia, _idF, _imagen, _nombre, _celular, _so_mobile, _latitud, _longitud, _modulo, _cmodulo, _megusta, _status_reparacion, _domicilio, _creado_el, _cfecha    ) );
 
-                                saveImageInternalTemp(_imagen);
+                                String[] arr_imagen_s = _imagen.split("\\.");
+                                String _imagen_s = arr_imagen_s[0]+"-s."+arr_imagen_s[1];
+                                saveImageInternalTemp(_imagen_s);
 
                             }
                             Log.w("ARRAY IMAGENES", MM.toString());

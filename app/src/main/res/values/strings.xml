@@ -27,6 +27,7 @@
     <string name="title_activity_registry">Registro de Nuevo Usuario</string>
     <string name="title_activity_reportar">Enviar un reporte</string>
     <string name="title_activity_imagenes">Mis Imágenes</string>
+    <string name="title_activity_imagen_view">Foto</string>
 
     <string name="hint_email">Username</string>
     <string name="hint_password">Password</string>
