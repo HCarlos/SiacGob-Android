@@ -143,7 +143,6 @@ public class Utilidades {
 */
 
     public static void getLatLon() throws IOException {
-
         GPSTracker gps = new GPSTracker(activity);
         int status = 0;
         if (!gps.canGetLocation() ) {

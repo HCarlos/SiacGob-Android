@@ -36,7 +36,7 @@ public class ImagenesActivity extends AppCompatActivity {
         Log.w("USERNAME for Query:", Singleton.getUsername());
 
         getImagenes bi = new getImagenes(this);
-        bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES);
+        bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 1);
 
     }
 

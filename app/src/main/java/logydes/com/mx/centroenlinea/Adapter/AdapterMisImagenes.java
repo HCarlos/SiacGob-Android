@@ -18,8 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
 import logydes.com.mx.centroenlinea.Pojos.Imagenes;
 import logydes.com.mx.centroenlinea.R;
+import logydes.com.mx.centroenlinea.Utils.PhotoUtils;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
 
 /**
@@ -63,31 +66,8 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
 
         Imagenes mm = MM.get(position);
 
-        String img = mm.getImagen_s();
-
-        try {
-            /*
-            URL thumb_u = new URL("http://siac.tabascoweb.com/upload/"+img);
-            Drawable thumb_d = Drawable.createFromStream(thumb_u.openStream(), "src");
-            cvh.iv_imagen.setImageDrawable(thumb_d);
-            */
-
-
-            // cvh.iv_imagen.setImageURI(Uri.parse("http://siac.tabascoweb.com/upload/"+img));
-
-            /*
-            URL thumb_u = new URL(rutaImage);
-
-            cvh.iv_imagen.setImageBitmap( getRemoteImage(thumb_u) );
-            */
-            String rutaImage = "http://siac.tabascoweb.com/upload/"+img;
-
-            downloadFile(rutaImage, cvh.iv_imagen);
-
-        }
-        catch (Exception e) {
-            Log.e("OCURRIO un MEGA ERROR", e.toString());
-        }
+        String img = mm.getImagen();
+        getImage(img, cvh.iv_imagen);
 
         /*
         cvh.lyImagenes.setOnClickListener(new View.OnClickListener() {
@@ -124,17 +104,19 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
 
     }
 
-    private void downloadFile(String imageHttpAddress, ImageView IV) {
-        URL imageUrl = null;
-        try {
-            imageUrl = new URL(imageHttpAddress);
-            HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
-            conn.connect();
-            loadedImage = BitmapFactory.decodeStream(conn.getInputStream());
-            IV.setImageBitmap(loadedImage);
-        } catch (IOException e) {
-            Toast.makeText(activity, "Error cargando la imagen: "+e.getMessage(), Toast.LENGTH_LONG).show();
-            e.printStackTrace();
+    public void getImage(String ImageName, ImageView photoViewer) {
+        PhotoUtils photoUtils = new PhotoUtils(activity);
+        File tempDir = activity.getExternalCacheDir();
+        tempDir = new File(tempDir.getAbsolutePath() + "/temp/"+ImageName);
+        Uri uri = Uri.fromFile(tempDir);
+        Bitmap bounds = photoUtils.getImage(uri);
+        if (bounds != null) {
+            photoViewer.setImageBitmap(bounds);
+        } else {
+            Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 }

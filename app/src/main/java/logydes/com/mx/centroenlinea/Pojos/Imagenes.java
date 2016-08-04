@@ -1,5 +1,7 @@
 package logydes.com.mx.centroenlinea.Pojos;
 
+import java.net.URI;
+
 /**
  * Created by devch on 3/08/16.
  */
@@ -23,6 +25,7 @@ public class Imagenes {
     private  String domicilio;
     private  String creado_el;
     private  String cfecha;
+    private URI uri;
 
     public Imagenes(
                      int _idmdenuncia,
@@ -41,7 +44,7 @@ public class Imagenes {
                      String _domicilio,
                      String _creado_el,
                      String _cfecha
-            
+
     ) {
         idmdenuncia = _idmdenuncia;
         denuncia = _denuncia;
@@ -208,5 +211,13 @@ public class Imagenes {
     public  void setCfecha(String _cfecha) {
 
         cfecha = _cfecha;
+    }
+
+    public URI getUri() {
+        return uri;
+    }
+
+    public void setUri(URI uri) {
+        this.uri = uri;
     }
 }

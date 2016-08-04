@@ -50,6 +50,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Inside.getImagenes;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
 import logydes.com.mx.centroenlinea.Utils.PhotoUtils;
@@ -369,6 +370,9 @@ public class ReportarActivity extends AppCompatActivity {
                         webviewer.getSettings().setJavaScriptEnabled(true);
 
                         webviewer.loadUrl(AppConfig.URL_SOCKETIO);
+
+                        getImagenes bi = new getImagenes(activity);
+                        bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
 
                         new AlertDialog.Builder(ReportarActivity.this)
                                 .setTitle("Gracias por tu reporte")

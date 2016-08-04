@@ -25,6 +25,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
 import logydes.com.mx.centroenlinea.Helper.SessionManager;
 import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Inside.getImagenes;
+import logydes.com.mx.centroenlinea.Utils.AppConfig;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -110,6 +112,9 @@ public class MainActivity extends AppCompatActivity
                     ReportService();
                 }
             });
+
+            getImagenes bi = new getImagenes(this);
+            bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
 
         }else{
             llOpciones.setVisibility(View.INVISIBLE);
