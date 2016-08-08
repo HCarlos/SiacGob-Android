@@ -3,34 +3,28 @@ package logydes.com.mx.centroenlinea.Adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
-import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Utils.Singleton;
+import logydes.com.mx.centroenlinea.Inside.getImagenes;
 import logydes.com.mx.centroenlinea.Pojos.Imagenes;
 import logydes.com.mx.centroenlinea.R;
+import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.PhotoUtils;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
 import logydes.com.mx.centroenlinea.ViewImageActivity;
@@ -69,9 +63,9 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
 
         final Imagenes mm = MM.get(position);
 
-        final String imgPaso;
+
         final String img = mm.getImagen_s();
-        imgPaso = getImage(img, cvh.iv_imagen);
+        getImage(img, cvh.iv_imagen);
 
         int tiposo = mm.getSo_mobile();
         String uri = "@mipmap/ic_android_logo";
@@ -90,7 +84,7 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
 
         cvh.txt_cfecha.setText(mm.getCfecha());
         cvh.txt_denuncia.setText(mm.getDenuncia());
-
+        cvh.txt_cmodulo.setText( String.valueOf(mm.getIdmdenuncia()) + " " + mm.getCmodulo() );
 
 
         cvh.cmdFABIV.setOnClickListener(new View.OnClickListener() {
@@ -98,15 +92,42 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
             public void onClick(View view) {
                 //Singleton.setIdAlu(mm.getData());
                 Intent intent = new Intent(activity, ViewImageActivity.class);
-                intent.putExtra("imagen", img );
-                //intent.putExtra(activity.getString(R.string.idalu), Singleton.getIdAlu() );
-                //intent.putExtra("grupo",mm.getGrupo());
+                intent.putExtra("idmdenuncia", Integer.valueOf( mm.getIdmdenuncia() ) );
                 activity.startActivity(intent);
 
             }
         });
 
+        cvh.cmdFABIVDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                getImagenes gi = new getImagenes(activity);
+                                gi.deleteImage(AppConfig.URL_DELETE_IMAGE_FROM_IDMDENUNCIA, mm.getIdmdenuncia());
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder( activity );
+                builder.setCancelable(false);
+                builder.setTitle("Atención");
+                builder.setMessage("Desea eliminar la imagen "+mm.getIdmdenuncia()+"?").setPositiveButton(R.string.option_yes, dialogClickListener)
+                        .setNegativeButton(R.string.option_no, dialogClickListener).show();
+
+            }
+        });
 
     }
 
@@ -121,6 +142,8 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
         TextView txt_cfecha;
         TextView txt_denuncia;
         FloatingActionButton cmdFABIV;
+        TextView txt_cmodulo;
+        FloatingActionButton cmdFABIVDel;
 
 
         public AdapterImagenesViewHolder(View itemView) {
@@ -129,13 +152,15 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
             iv_celular = (ImageView) itemView.findViewById(R.id.iv_celular);
             txt_cfecha = (TextView) itemView.findViewById(R.id.txt_cfecha);
             txt_denuncia = (TextView) itemView.findViewById(R.id.txt_denuncia);
+            txt_cmodulo = (TextView) itemView.findViewById(R.id.txt_cmodulo);
             cmdFABIV = (FloatingActionButton) itemView.findViewById(R.id.cmdFABIV);
+            cmdFABIVDel = (FloatingActionButton) itemView.findViewById(R.id.cmdFABIVDel);
 
         }
 
     }
 
-    public String getImage(String ImageName, ImageView photoViewer) {
+    public void getImage(String ImageName, ImageView photoViewer) {
         PhotoUtils photoUtils = new PhotoUtils(activity);
         File tempDir = activity.getExternalCacheDir();
         String url = tempDir.getAbsolutePath() + "/temp/"+ImageName;
@@ -145,9 +170,10 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
         if (bounds != null) {
             photoViewer.setImageBitmap(bounds);
         } else {
-            Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+            photoViewer.setImageResource(R.mipmap.ic_image_empty);
+            tempDir.delete();
         }
-        return url;
+
     }
 
 

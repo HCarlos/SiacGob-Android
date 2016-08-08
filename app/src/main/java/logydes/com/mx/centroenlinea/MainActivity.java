@@ -24,9 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
 import logydes.com.mx.centroenlinea.Helper.SessionManager;
-import logydes.com.mx.centroenlinea.Helper.Singleton;
-import logydes.com.mx.centroenlinea.Inside.getImagenes;
-import logydes.com.mx.centroenlinea.Utils.AppConfig;
+import logydes.com.mx.centroenlinea.Utils.Singleton;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -134,6 +132,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

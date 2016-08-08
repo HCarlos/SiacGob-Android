@@ -1,12 +1,8 @@
-package logydes.com.mx.centroenlinea.Helper;
-
-import android.util.Log;
+package logydes.com.mx.centroenlinea.Utils;
 
 import java.util.ArrayList;
 
 import logydes.com.mx.centroenlinea.Pojos.Imagenes;
-import logydes.com.mx.centroenlinea.Pojos.Lista_Elementos;
-import logydes.com.mx.centroenlinea.Pojos.Hijos;
 
 /**
  * Created by devch on 22/06/16.
@@ -32,6 +28,7 @@ public class Singleton {
     private static ArrayList<Imagenes> arrImagenes;
 
     private static boolean isCameraPresent;
+    private static boolean isGPS;
 
     public Singleton() { }
 
@@ -44,6 +41,7 @@ public class Singleton {
         Nombre = "";
         Celular = "";
         isCameraPresent = false;
+        isGPS = false;
         UUID = "";
     }
 
@@ -141,6 +139,14 @@ public class Singleton {
 
     public static void setIsCameraPresent(boolean isCameraPresent) {
         Singleton.isCameraPresent = isCameraPresent;
+    }
+
+    public static boolean isGPS() {
+        return isGPS;
+    }
+
+    public static void setIsGPS(boolean isGPS) {
+        Singleton.isGPS = isGPS;
     }
 
     public static ArrayList<Imagenes> getArrImagenes() {

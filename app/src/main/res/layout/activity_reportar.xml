@@ -43,13 +43,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/em8"
+                android:paddingBottom="@dimen/em8"
+                >
 
                 <Button
                     android:id="@+id/cmdFoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cámara"
+                    android:text="@string/take_photo"
+                    android:drawableLeft="@mipmap/ic_camera_24"
+                    android:gravity="left|center_vertical"
+                    android:background="@drawable/border_shadow_camera_button"
+                    android:textColor="@color/white"
+                    android:paddingRight="@dimen/em16"
+                    android:elevation="@dimen/em8"
                     />
 
                 <View
@@ -62,9 +71,18 @@
                     android:id="@+id/cmdFototeca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fototeca"
+                    android:text="@string/get_gallery"
                     android:layout_gravity="right"
+                    android:drawableLeft="@mipmap/ic_gallery_24"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/white"
+                    android:background="@drawable/border_shadow_fototeca_button"
+                    android:paddingRight="@dimen/em16"
+                    android:shadowColor="@color/divider"
+                    android:elevation="@dimen/em8"
+
                     />
+
 
             </LinearLayout>
 
@@ -76,7 +94,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_img_reporte"/>
+                    android:text="@string/lbl_img_reporte"
+                    android:textStyle="bold"
+                    />
 
                 <ImageView
                     android:id="@+id/Foto"
@@ -100,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@color/colorAccent"
+                android:background="@drawable/border_shadow_reportar_button"
                 android:text="@string/action_reportar_in"
                 android:textStyle="bold"
                 android:textColor="@color/white"

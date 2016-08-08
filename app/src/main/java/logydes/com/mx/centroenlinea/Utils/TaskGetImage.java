@@ -1,13 +1,10 @@
 package logydes.com.mx.centroenlinea.Utils;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
@@ -43,11 +40,6 @@ public class TaskGetImage extends AsyncTask<Context, Void, Bitmap>{
     @Override
     protected Bitmap doInBackground(Context... arg0) {
 
-        //AssetManager assetMgr = arg0[0].getAssets();
-            // bitmap = BitmapFactory.decodeStream(assetMgr.open("http://siac.tabascoweb.com/upload/"+URL));
-            // bitmap = BitmapFactory.decodeStream((InputStream)new URL("http://siac.tabascoweb.com/upload/"+_URL).getContent());
-
-
         return creaBitMap();
     }
 
@@ -70,6 +62,7 @@ public class TaskGetImage extends AsyncTask<Context, Void, Bitmap>{
         String _URL = cURL;
 
         try {
+
             String src = "http://siac.tabascoweb.com/upload/"+_URL;
             URL url = new URL(src);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -93,7 +86,7 @@ public class TaskGetImage extends AsyncTask<Context, Void, Bitmap>{
                 fOut.flush();
                 fOut.close(); // do not forget to close the stream
 
-                // MediaStore.Images.Media.insertImage(getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
+                MediaStore.Images.Media.insertImage(context.getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
                 Log.w("IMAGEN:", dest.getPath());
             }
 

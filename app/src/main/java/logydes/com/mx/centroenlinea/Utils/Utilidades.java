@@ -2,15 +2,15 @@ package logydes.com.mx.centroenlinea.Utils;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -27,8 +27,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import logydes.com.mx.centroenlinea.Helper.Singleton;
 
 /**
  * Created by devch on 17/06/16.
@@ -155,6 +153,11 @@ public class Utilidades {
             current_lattitude = gps.getLatitude();
             current_longitude = gps.getLongitude();
 
+            Singleton.setLatitude(current_lattitude);
+            Singleton.setLongitude(current_longitude);
+
+            Singleton.setIsGPS(true);
+
             Log.d("LAT LON", "" + current_lattitude + "-"
                     + current_longitude);
 
@@ -162,15 +165,24 @@ public class Utilidades {
                 current_lattitude = 22.22;
                 current_longitude = 22.22;
 
+                Singleton.setLatitude(current_lattitude);
+                Singleton.setLongitude(current_longitude);
+
+                Singleton.setIsGPS(false);
+
             }
 
         } else {
             current_lattitude = 22.22;
             current_longitude = 22.22;
+
+            Singleton.setLatitude(current_lattitude);
+            Singleton.setLongitude(current_longitude);
+
+            Singleton.setIsGPS(false);
+
         }
 
-        Singleton.setLatitude(current_lattitude);
-        Singleton.setLongitude(current_longitude);
 
         Geocoder geocoder;
         List<Address> addresses;
@@ -203,6 +215,14 @@ public class Utilidades {
         } catch(Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static boolean isNetworkConnected(Activity _activity) {
+        activity = _activity;
+        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null) return false;
+        else return true;
     }
 
 

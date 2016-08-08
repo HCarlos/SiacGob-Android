@@ -1,13 +1,11 @@
 package logydes.com.mx.centroenlinea;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +29,7 @@ import java.util.Map;
 
 import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
 import logydes.com.mx.centroenlinea.Helper.SessionManager;
-import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Utils.Singleton;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
@@ -57,6 +55,11 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if (!Utilidades.isNetworkConnected(this)) {
+            Toast.makeText(getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         uuid = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);

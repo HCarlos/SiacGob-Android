@@ -11,7 +11,7 @@ git status
 
 git add .
 
-git commit -m "List Images View from User 03"
+git commit -m "Public version 01"
 
 git push -u origin master --force
 

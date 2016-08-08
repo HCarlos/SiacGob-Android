@@ -12,7 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.HashMap;
-import java.util.StringTokenizer;
+
+import logydes.com.mx.centroenlinea.Utils.Singleton;
 
 public class SQLiteHandler extends SQLiteOpenHelper {
 

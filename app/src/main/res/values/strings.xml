@@ -54,16 +54,11 @@
     <string name="action_registry_in_message">Proporcione un corre electrónico para validar sus datos y posteriormente vaya a su cuenta de correo y valide el email que le fue enviado. </string>
     <string name="action_reportar_in">Reportar</string>
     <string name="action_reportar_in_short">Reportar</string>
-    <string name="action_reportar_in_message">Proporcione un corre electrónico para validar sus datos y posteriormente vaya a su cuenta de correo y valide el email que le fue enviado. </string>
-    <!--
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    -->
+    <string name="action_reportar_in_message">Dudas o comentarios:</string>
+
+    <string name="take_photo">Tomar Foto</string>
+    <string name="get_gallery">Mis imágenes</string>
+
     <!-- Cardview Hijos-->
     <string name="headerHijosTable">Alumnos</string>
     <string name="nombreAlumno">label</string>

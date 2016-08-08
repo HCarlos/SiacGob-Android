@@ -81,7 +81,10 @@
         <activity
             android:name=".ImagenesActivity"
             android:label="@string/title_activity_imagenes"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
 
             <!-- Soporte ver 4.0 o preview -->
             <meta-data
@@ -96,7 +99,9 @@
         <activity
             android:name=".ViewImageActivity"
             android:label="@string/title_activity_imagen_view"
-            android:parentActivityName=".ImagenesActivity">
+            android:parentActivityName=".ImagenesActivity"
+            android:screenOrientation="portrait"
+            >
 
             <!-- Soporte ver 4.0 o preview -->
             <meta-data

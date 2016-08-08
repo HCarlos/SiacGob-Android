@@ -1,30 +1,16 @@
 package logydes.com.mx.centroenlinea;
 
-import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +21,6 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -44,14 +29,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.security.Provider;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import logydes.com.mx.centroenlinea.Helper.SQLiteHandler;
 import logydes.com.mx.centroenlinea.Helper.SessionManager;
-import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Utils.Singleton;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
 import logydes.com.mx.centroenlinea.Utils.Utilidades;
@@ -80,6 +63,11 @@ public class RegistryActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registry);
+
+        if (!Utilidades.isNetworkConnected(this)) {
+            Toast.makeText(getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         try {
@@ -270,83 +258,6 @@ public class RegistryActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(email, "Elija un cliente de correo electrónico :"));
         return true;
     }
-/*
-    public void GetGPS() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-                && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-                ) {
-
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    123);
-        } else getLatLon();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 123) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted.
-                getLatLon();
-            } else {
-                // User refused to grant permission.
-            }
-        }
-    }
-
-    public void getLatLon() {
-
-
-        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-
-        final LocationListener locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                double longitude = location.getLongitude();
-                double latitude = location.getLatitude();
-                Log.e("LAT: ", Double.toString(latitude));
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-
-        };
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            // return;
-        }
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
-
-        // double longitude = location.getLongitude();
-        // double latitude = location.getLatitude();
-
-
-    }
-
-
-*/
-
-
 
 }
 

@@ -20,5 +20,7 @@ public class AppConfig {
 
     public static String URL_IMAGE_VIEW_ITEM = "http://siac.tabascoweb.com/imageViewItem/";
 
+    public static String URL_DELETE_IMAGE_FROM_IDMDENUNCIA = "http://siac.tabascoweb.com/deleteImageFromIdMDenuncia/";
+
 
 }

@@ -46,6 +46,7 @@
     <dimen name="padding6dp">6dp</dimen>
     <dimen name="padding8dp">8dp</dimen>
     <dimen name="tamanoImgHeader">100dp</dimen>
+    <dimen name="thumbnail">100dp</dimen>
 
     <!-- Cardview Hijos -->
     <dimen name="cvTamanoImgHeaderHijos">32dp</dimen>

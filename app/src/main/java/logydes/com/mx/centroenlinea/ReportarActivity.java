@@ -11,8 +11,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +21,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,7 +46,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import logydes.com.mx.centroenlinea.Helper.Singleton;
+import logydes.com.mx.centroenlinea.Utils.Singleton;
 import logydes.com.mx.centroenlinea.Inside.getImagenes;
 import logydes.com.mx.centroenlinea.Utils.AppConfig;
 import logydes.com.mx.centroenlinea.Utils.AppController;
@@ -76,8 +73,9 @@ public class ReportarActivity extends AppCompatActivity {
     private Button cmdTomarFoto;
     private Button cmdFototeca;
     private String pathphoto;
-
+    private String nombreFoto;
     public FileInputStream fileInputStream;
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -90,6 +88,9 @@ public class ReportarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reportar);
         activity = this;
+
+        Long tsLong = System.currentTimeMillis()/1000;
+        nombreFoto = tsLong.toString();
 
         Utilidades.GetCamera(activity,2);
 
@@ -161,8 +162,8 @@ public class ReportarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mImageUri != null) {
                     if (!pathphoto.trim().equalsIgnoreCase("")) {
-
-                        if (isNetworkConnected())
+                        // Utilidades util = new Utilidades();
+                        if (Utilidades.isNetworkConnected(activity))
                             checkReportar();
                         else
                             Toast.makeText(getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
@@ -310,7 +311,7 @@ public class ReportarActivity extends AppCompatActivity {
             setImageBitmap(bounds);
         } else {
             //showErrorToast();
-            Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ha ocurrido un error, no se puedo cargar la imagen...", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -341,6 +342,17 @@ public class ReportarActivity extends AppCompatActivity {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
+        if (!Utilidades.isNetworkConnected(this)) {
+            Toast.makeText(getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!Singleton.isGPS()) {
+            Toast.makeText(getApplicationContext(), "No se pudo obtener la ubicación exacta del problema, por favor, intente en un espacio abierto.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
         pDialog.setMessage("Envio de reporte");
         showDialog();
 
@@ -370,9 +382,12 @@ public class ReportarActivity extends AppCompatActivity {
                         webviewer.getSettings().setJavaScriptEnabled(true);
 
                         webviewer.loadUrl(AppConfig.URL_SOCKETIO);
+                        if (Utilidades.isNetworkConnected(activity)) {
+                            getImagenes bi = new getImagenes(activity);
+                            bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
+                        }else
+                            Toast.makeText(getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
 
-                        getImagenes bi = new getImagenes(activity);
-                        bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
 
                         new AlertDialog.Builder(ReportarActivity.this)
                                 .setTitle("Gracias por tu reporte")
@@ -450,6 +465,8 @@ public class ReportarActivity extends AppCompatActivity {
 
                 params.put("modulo", String.valueOf(Singleton.getModulo()));
                 params.put("domicilio", Singleton.getDireccion());
+                params.put("nombreimage", nombreFoto);
+
 
                 params.put("userfile", image_str);
 
@@ -464,13 +481,6 @@ public class ReportarActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-
-    private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo ni = cm.getActiveNetworkInfo();
-        if (ni == null) return false;
-        else return true;
-    }
 
     private void showDialog() {
         if (!pDialog.isShowing())

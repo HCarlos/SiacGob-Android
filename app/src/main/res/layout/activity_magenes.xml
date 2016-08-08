@@ -1,33 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".ImagenesActivity"
+    android:fitsSystemWindows="false"
     android:orientation="vertical"
+    android:background="@color/white"
     >
 
-    <!--
-    <TextView
-        android:id="@+id/tvOpcionesImagenes"
+    <include
+        android:id="@+id/app_Bar_Imagenes"
+        layout="@layout/app_bar_imagenes"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/em32"
-        android:layout_marginRight="@dimen/em8"
-        android:layout_marginLeft="@dimen/em8"
-        android:layout_marginBottom="@dimen/cvBottomMarginMenu"
-        android:layout_marginTop="@dimen/cvBottomMarginMenu"
-        android:paddingTop="@dimen/cvTopPaddingMenu"
-        android:paddingLeft="@dimen/padding8dp"
-        android:background="@drawable/round_corners"
-        android:textColor="@color/white"
-        android:gravity="left"
-        android:textStyle="bold"
-        android:text="MIS IMÁGENES"
-
+        android:layout_height="wrap_content"
         />
-    -->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvImagenes"
@@ -35,6 +21,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/em16"
         android:background="@drawable/border_shadow"
+        android:layout_below="@id/app_Bar_Imagenes"
         />
 
 
