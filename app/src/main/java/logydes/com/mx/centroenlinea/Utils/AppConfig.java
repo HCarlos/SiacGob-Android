@@ -8,6 +8,10 @@ public class AppConfig {
     public static String TEXT_HTML = "text/html";
     public static String UTF_8 = "UTF-8";
 
+    public static String URL_BASE = "http://siac.tabascoweb.com";
+    public static String GET_MEDIA_IMAGES = "/upload/";
+    public static String URL_MEDIA_IMAGES = URL_BASE + GET_MEDIA_IMAGES;
+
     public static String URL_LOGIN = "http://siac.tabascoweb.com/loginAndroid/";
 
     public static String URL_REGISTER = "http://siac.tabascoweb.com/registryAndroid/";

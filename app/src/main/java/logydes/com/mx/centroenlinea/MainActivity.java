@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity
 
     private LinearLayout llInicio;
     private LinearLayout llOpciones;
+    private ScrollView myScroll;
 
     private LinearLayout llReparacionBaches;
     private LinearLayout llFugaAgua;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity
 
         llInicio = (LinearLayout) findViewById(R.id.llInicio);
         llOpciones = (LinearLayout) findViewById(R.id.llOpciones);
+        myScroll = (ScrollView) findViewById(R.id.myScroll);
+
 
         llReparacionBaches = (LinearLayout) findViewById(R.id.llReparacionBaches);
         llReparacionLuminarias = (LinearLayout) findViewById(R.id.llReparacionMinarias);
@@ -77,7 +81,9 @@ public class MainActivity extends AppCompatActivity
             db.getUserDetails();
             String nc = singleton.getUsername();
             llInicio.setVisibility(View.INVISIBLE);
+            myScroll.setVisibility(View.VISIBLE);
             llOpciones.setVisibility(View.VISIBLE);
+
 
             llReparacionBaches.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,6 +122,7 @@ public class MainActivity extends AppCompatActivity
 
         }else{
             llOpciones.setVisibility(View.INVISIBLE);
+            myScroll.setVisibility(View.INVISIBLE);
             llInicio.setVisibility(View.VISIBLE);
         }
 
@@ -209,6 +216,7 @@ public class MainActivity extends AppCompatActivity
         // startActivity(intent);
 
         llOpciones.setVisibility(View.INVISIBLE);
+        myScroll.setVisibility(View.INVISIBLE);
         llInicio.setVisibility(View.VISIBLE);
 
     }

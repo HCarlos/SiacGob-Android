@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -65,7 +67,12 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
 
 
         final String img = mm.getImagen_s();
-        getImage(img, cvh.iv_imagen);
+        // getImage(img, cvh.iv_imagen);
+
+        Picasso.with(activity)
+                .load(AppConfig.URL_MEDIA_IMAGES+img)
+                .placeholder(R.mipmap.ic_image_empty)
+                .into(cvh.iv_imagen);
 
         int tiposo = mm.getSo_mobile();
         String uri = "@mipmap/ic_android_logo";
@@ -145,7 +152,6 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
         TextView txt_cmodulo;
         FloatingActionButton cmdFABIVDel;
 
-
         public AdapterImagenesViewHolder(View itemView) {
             super(itemView);
             iv_imagen = (ImageView) itemView.findViewById(R.id.iv_imagen);
@@ -160,6 +166,7 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
 
     }
 
+    /*
     public void getImage(String ImageName, ImageView photoViewer) {
         PhotoUtils photoUtils = new PhotoUtils(activity);
         File tempDir = activity.getExternalCacheDir();
@@ -175,6 +182,7 @@ public class AdapterMisImagenes extends RecyclerView.Adapter<AdapterMisImagenes.
         }
 
     }
+    */
 
 
 

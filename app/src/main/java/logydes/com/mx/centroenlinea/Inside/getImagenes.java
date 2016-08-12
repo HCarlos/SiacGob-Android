@@ -119,12 +119,15 @@ public class getImagenes {
                                 String _creado_el = String.valueOf(rec.getString("creado_el"));
                                 String _cfecha = String.valueOf(rec.getString("cfecha"));
 
+                                /*
                                 String[] arr_imagen_s = _imagen.split("\\.");
                                 String _imagen_s = arr_imagen_s[0]+"-s."+arr_imagen_s[1];
                                 if ( saveImageInternalTemp(_imagen_s) ){
                                     MM.add( new Imagenes( _idmdenuncia, _denuncia, _idF, _imagen, _nombre, _celular, _so_mobile, _latitud, _longitud, _modulo, _cmodulo, _megusta, _status_reparacion, _domicilio, _creado_el, _cfecha    ) );
                                 }
+                                */
 
+                                MM.add( new Imagenes( _idmdenuncia, _denuncia, _idF, _imagen, _nombre, _celular, _so_mobile, _latitud, _longitud, _modulo, _cmodulo, _megusta, _status_reparacion, _domicilio, _creado_el, _cfecha    ) );
 
                             }
                             Log.w("ARRAY IMAGENES", MM.toString());
@@ -172,6 +175,7 @@ public class getImagenes {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    /*
     private boolean saveImageInternalTemp(final String _imagen){
         String path = context.getExternalCacheDir().toString();
         OutputStream fOut = null;
@@ -201,6 +205,7 @@ public class getImagenes {
         return true;
 
     }
+    */
 
 
     private boolean creaBitMap(String imageName){

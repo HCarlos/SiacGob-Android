@@ -15,369 +15,375 @@
         android:layout_height="wrap_content"
         />
 
-    <LinearLayout
-        android:id="@+id/llInicio"
-        android:layout_marginTop="@dimen/em80"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/em16"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/banner_logo_top_2"
-            />
 
         <LinearLayout
-            android:layout_marginTop="@dimen/em16"
+            android:id="@+id/llInicio"
+            android:layout_marginTop="@dimen/em80"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/em56"
-            android:orientation="horizontal"
-            android:background="@color/colorPrimaryDark"
-            >
+            android:layout_height="match_parent"
+            android:padding="@dimen/em16"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em12"
-                android:src="@mipmap/ic_two_smartphones_40"/>
-
-            <TextView
-                android:paddingTop="@dimen/em14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REPORTA TU SERVICIO"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/em24"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Eres Nuevo?"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/colorNaranja"
-                android:textAlignment="center"
-                />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/ic_sign_up_40"
-                    android:onClick="RegistryUser"/>
-
-                <TextView
-                    android:id="@+id/txtRegistro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/em40"
-                    android:text="Regístrate"
-                    android:textColor="@color/accent"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/em24"
-                    android:paddingTop="@dimen/em4"
-                    android:paddingLeft="@dimen/em4"
-                    android:onClick="RegistryUser"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/em24"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ya estas registrado?"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/colorVerde"
-                android:textAlignment="center"
+                android:src="@drawable/banner_logo_top_2"
                 />
 
             <LinearLayout
+                android:layout_marginTop="@dimen/em16"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/em56"
                 android:orientation="horizontal"
-                android:gravity="center"
+                android:background="@color/colorPrimaryDark"
                 >
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/ic_key_40"
-                    android:onClick="LoginUser"/>
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em12"
+                    android:src="@mipmap/ic_two_smartphones_40"/>
 
                 <TextView
-                    android:id="@+id/txtLogin"
+                    android:paddingTop="@dimen/em14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="REPORTA TU SERVICIO"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/em24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Eres Nuevo?"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorNaranja"
+                    android:textAlignment="center"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_sign_up_40"
+                        android:onClick="RegistryUser"/>
+
+                    <TextView
+                        android:id="@+id/txtRegistro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/em40"
+                        android:text="Regístrate"
+                        android:textColor="@color/accent"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/em24"
+                        android:paddingTop="@dimen/em4"
+                        android:paddingLeft="@dimen/em4"
+                        android:onClick="RegistryUser"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/em24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ya estas registrado?"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorVerde"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/ic_key_40"
+                        android:onClick="LoginUser"/>
+
+                    <TextView
+                        android:id="@+id/txtLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/em40"
+                        android:text="Ingresar"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/em24"
+                        android:paddingTop="@dimen/em4"
+                        android:paddingLeft="@dimen/em4"
+                        android:onClick="LoginUser"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/myScroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/em80"
+        >
+
+        <!-- Opciones -->
+        <LinearLayout
+            android:id="@+id/llOpciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/em16"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:fillViewport="true"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/banner_logo_top_2"
+                android:paddingBottom="@dimen/em16"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/em40"
+                android:orientation="horizontal"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/em16">
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_repair_user"/>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/em40"
-                    android:text="Ingresar"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold"
+                    android:text="Reporta tu servicio"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/em24"
                     android:paddingTop="@dimen/em4"
                     android:paddingLeft="@dimen/em4"
-                    android:onClick="LoginUser"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llReparacionBaches"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/em44"
+                android:orientation="horizontal"
+                android:background="@drawable/border_shadow"
+                android:layout_marginTop="@dimen/em16">
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_baches_repair"/>
+
+                <TextView
+                    android:id="@+id/txtBaches"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/em40"
+                    android:text="@string/reparacion_de_baches"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/em20"
+                    android:paddingTop="@dimen/em8"
+                    android:paddingLeft="@dimen/em4"
+
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_arrow_right"
+                    android:layout_gravity="right"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFugaAgua"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/em44"
+                android:orientation="horizontal"
+                android:background="@drawable/border_shadow"
+                android:layout_marginTop="@dimen/em16">
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_fuga_agua"/>
+
+                <TextView
+                    android:id="@+id/txtFugaAgua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/em40"
+                    android:text="@string/fuga_de_agua"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/em20"
+                    android:paddingTop="@dimen/em8"
+                    android:paddingLeft="@dimen/em4"
+
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_arrow_right"
+                    android:layout_gravity="right"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRecoleccionBasura"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/em44"
+                android:orientation="horizontal"
+                android:background="@drawable/border_shadow"
+                android:layout_marginTop="@dimen/em16">
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_recoleccion_basura"/>
+
+                <TextView
+                    android:id="@+id/txtRecoleccionBasura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/em40"
+                    android:text="@string/recoleccion_de_basura"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/em20"
+                    android:paddingTop="@dimen/em8"
+                    android:paddingLeft="@dimen/em4"
+
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_arrow_right"
+                    android:layout_gravity="right"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llReparacionMinarias"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/em44"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/em16"
+                android:background="@drawable/border_shadow"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_luminarias"/>
+
+                <TextView
+                    android:id="@+id/txtLiminarias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/em40"
+                    android:text="@string/reparacion_luminarias"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/em20"
+                    android:paddingTop="@dimen/em8"
+                    android:paddingLeft="@dimen/em4"
+
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/em40"
+                    android:layout_height="@dimen/em40"
+                    android:paddingTop="@dimen/em4"
+                    android:paddingLeft="@dimen/em4"
+                    android:src="@mipmap/ic_arrow_right"
+                    android:layout_gravity="right"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-
-
-    <!-- Opciones -->
-    <LinearLayout
-        android:id="@+id/llOpciones"
-        android:layout_marginTop="@dimen/em80"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/em16"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/banner_logo_top_2"
-            android:paddingBottom="@dimen/em16"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/em40"
-            android:orientation="horizontal"
-            android:background="@color/colorPrimary"
-            android:layout_marginTop="@dimen/em16">
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_repair_user"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/em40"
-                android:text="Reporta tu servicio"
-                android:textColor="@color/white"
-                android:textSize="@dimen/em24"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llReparacionBaches"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/em44"
-            android:orientation="horizontal"
-            android:background="@drawable/border_shadow"
-            android:layout_marginTop="@dimen/em16">
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_baches_repair"/>
-
-            <TextView
-                android:id="@+id/txtBaches"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/em40"
-                android:text="@string/reparacion_de_baches"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/em20"
-                android:paddingTop="@dimen/em8"
-                android:paddingLeft="@dimen/em4"
-
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_arrow_right"
-                android:layout_gravity="right"
-                />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llFugaAgua"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/em44"
-            android:orientation="horizontal"
-            android:background="@drawable/border_shadow"
-            android:layout_marginTop="@dimen/em16">
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_fuga_agua"/>
-
-            <TextView
-                android:id="@+id/txtFugaAgua"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/em40"
-                android:text="@string/fuga_de_agua"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/em20"
-                android:paddingTop="@dimen/em8"
-                android:paddingLeft="@dimen/em4"
-
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_arrow_right"
-                android:layout_gravity="right"
-                />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llRecoleccionBasura"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/em44"
-            android:orientation="horizontal"
-            android:background="@drawable/border_shadow"
-            android:layout_marginTop="@dimen/em16">
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_recoleccion_basura"/>
-
-            <TextView
-                android:id="@+id/txtRecoleccionBasura"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/em40"
-                android:text="@string/recoleccion_de_basura"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/em20"
-                android:paddingTop="@dimen/em8"
-                android:paddingLeft="@dimen/em4"
-
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_arrow_right"
-                android:layout_gravity="right"
-                />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/llReparacionMinarias"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/em44"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/em16"
-            android:background="@drawable/border_shadow"
-            >
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_luminarias"/>
-
-            <TextView
-                android:id="@+id/txtLiminarias"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/em40"
-                android:text="@string/reparacion_luminarias"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/em20"
-                android:paddingTop="@dimen/em8"
-                android:paddingLeft="@dimen/em4"
-
-                />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_width="@dimen/em40"
-                android:layout_height="@dimen/em40"
-                android:paddingTop="@dimen/em4"
-                android:paddingLeft="@dimen/em4"
-                android:src="@mipmap/ic_arrow_right"
-                android:layout_gravity="right"
-                />
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
+        </ScrollView>
 </android.support.v4.widget.DrawerLayout>
