@@ -26,5 +26,6 @@ public class AppConfig {
 
     public static String URL_DELETE_IMAGE_FROM_IDMDENUNCIA = "http://siac.tabascoweb.com/deleteImageFromIdMDenuncia/";
 
+    public static String URL_SAVE_DATA_PROFILE = URL_BASE + "/setAndroidUserData/";
 
 }

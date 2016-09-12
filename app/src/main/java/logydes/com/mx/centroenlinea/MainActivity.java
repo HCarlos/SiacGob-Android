@@ -48,26 +48,23 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout llRecolecionBasura;
     private LinearLayout llReparacionLuminarias;
     private ImageView myPicture;
-
-
-
+    private Menu mnMenuPrincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         llInicio = (LinearLayout) findViewById(R.id.llInicio);
         llOpciones = (LinearLayout) findViewById(R.id.llOpciones);
         myScroll = (ScrollView) findViewById(R.id.myScroll);
-
+        myPicture = (ImageView) findViewById(R.id.myPictures);
 
         llReparacionBaches = (LinearLayout) findViewById(R.id.llReparacionBaches);
         llReparacionLuminarias = (LinearLayout) findViewById(R.id.llReparacionMinarias);
         llFugaAgua = (LinearLayout) findViewById(R.id.llFugaAgua);
         llRecolecionBasura = (LinearLayout) findViewById(R.id.llRecoleccionBasura);
+        mnMenuPrincipal = (Menu) findViewById(R.id.mnMenuPrincipal);
 
         // rlayout1.setVisibility(2);
 
@@ -83,6 +80,7 @@ public class MainActivity extends AppCompatActivity
             llInicio.setVisibility(View.INVISIBLE);
             myScroll.setVisibility(View.VISIBLE);
             llOpciones.setVisibility(View.VISIBLE);
+            myPicture.setVisibility(View.VISIBLE);
 
 
             llReparacionBaches.setOnClickListener(new View.OnClickListener() {
@@ -117,28 +115,27 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            // getImagenes bi = new getImagenes(this);
-            // bi.getImageList(AppConfig.URL_DOWNLOAD_IMAGES, 0);
+            myPicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, ImagenesActivity.class);
+                    startActivity(intent);
+                }
+            });
+
 
         }else{
+            myPicture.setVisibility(View.INVISIBLE);
             llOpciones.setVisibility(View.INVISIBLE);
             myScroll.setVisibility(View.INVISIBLE);
             llInicio.setVisibility(View.VISIBLE);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null){
+        if ( toolbar != null ){
             setSupportActionBar(toolbar);
         }
 
-        myPicture = (ImageView) findViewById(R.id.myPictures);
-        myPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ImagenesActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -174,6 +171,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if ( session.isLoggedIn() ) {
+            menu.getItem(0).setVisible(true);
+            menu.getItem(1).setVisible(true);
+        }else{
+            menu.getItem(0).setVisible(false);
+            menu.getItem(1).setVisible(false);
+
+        }
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return getMenu(item);
     }
@@ -181,6 +191,10 @@ public class MainActivity extends AppCompatActivity
 
     public boolean getMenu(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.action_user_profile:
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
             case R.id.action_close_session:
                 Alert(0);
                 break;
@@ -212,12 +226,16 @@ public class MainActivity extends AppCompatActivity
     private void logoutUser() {
         session.setLogin(false);
         db.deleteUsers();
-        // Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        // startActivity(intent);
-
         llOpciones.setVisibility(View.INVISIBLE);
         myScroll.setVisibility(View.INVISIBLE);
         llInicio.setVisibility(View.VISIBLE);
+
+        int checkExistence = getBaseContext().getResources().getIdentifier("mnMenuPrincipal", "menu", this.getPackageName());
+        if ( checkExistence > 0 ) {
+            mnMenuPrincipal.getItem(0).setVisible(false);
+            mnMenuPrincipal.getItem(1).setVisible(false);
+        }
+        myPicture.setVisibility(View.INVISIBLE);
 
     }
 

@@ -20,7 +20,7 @@
     <string name="action_beneficios">Beneficios</string>
     <string name="action_desarrollador">Desarrollador</string>
 
-    <!-- Menu Tutores y Alumnos -->
+    <string name="action_user_profile">Perfil de Usuario</string>
     <string name="action_close_session">Cerrar Sesión</string>
 
     <string name="title_activity_login">Ingresar al Sistema</string>
@@ -28,6 +28,7 @@
     <string name="title_activity_reportar">Enviar un reporte</string>
     <string name="title_activity_imagenes">Mis Imágenes</string>
     <string name="title_activity_imagen_view">Foto</string>
+    <string name="title_activity_profile_view">Perfil de Usuario</string>
 
     <string name="hint_email">Username</string>
     <string name="hint_password">Password</string>
@@ -90,5 +91,11 @@
     <string name="recoleccion_de_basura">Recolección de Basura</string>
     <string name="reparacion_luminarias">Reparación de Luminarias</string>
 
+    <string name="prompt_fullname">Nombre Completo:</string>
+    <string name="prompt_domicilio">Domicilio:</string>
+    <string name="prompt_numcell">Número de Celular:</string>
+    <string name="action_save_profile">Guardar</string>
+
+    <string name="action_profile_in_message">Proporcione un número teléfonico donde nos podamos comunicar con usted.</string>
 
 </resources>

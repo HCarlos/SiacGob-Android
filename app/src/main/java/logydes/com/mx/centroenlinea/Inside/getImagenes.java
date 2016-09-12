@@ -175,39 +175,6 @@ public class getImagenes {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-    /*
-    private boolean saveImageInternalTemp(final String _imagen){
-        String path = context.getExternalCacheDir().toString();
-        OutputStream fOut = null;
-        File file = new File(path + "/temp/", _imagen); // the File to save to
-
-        final String urlImage = file.getPath();
-
-        if (!file.exists()) {
-
-            if (!Utilidades.isNetworkConnected(activity)) {
-                Toast.makeText(activity.getApplicationContext(), "Por favor, conéctese a internet!", Toast.LENGTH_LONG).show();
-                return false;
-            }
-
-            new Thread(new Runnable() {
-                public void run() {
-                    Log.e("IMAGE QUE SE PINTA", urlImage);
-                    // TaskGetImage task1 = new TaskGetImage(_imagen, 3, context);
-                    // task1.execute(activity);
-                    creaBitMap(_imagen);
-
-                }
-            }).start();
-
-        }
-
-        return true;
-
-    }
-    */
-
-
     private boolean creaBitMap(String imageName){
 
         Bitmap bitmap = null;

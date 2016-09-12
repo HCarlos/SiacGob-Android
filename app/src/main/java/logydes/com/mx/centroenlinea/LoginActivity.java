@@ -147,11 +147,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         String label = rec.getString("label");
                         String data = rec.getString("data");
+                        String fullname = rec.getString("fullname");
+                        String domicilio = rec.getString("domicilio");
+                        String numcell = rec.getString("numcell");
 
 
                         // Inserting row in users table
                         // db.addUser(name, email, uid, created_at);
-                        db.addUser(label, data, msg);
+                        db.addUser(label, data, msg, fullname, domicilio, numcell);
 
                         // user successfully logged in
                         // Create login session

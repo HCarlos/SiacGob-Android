@@ -14,6 +14,7 @@ public class Singleton {
         return ourInstance;
     }
 
+    private static int ID;
     private static int Modulo;
     private static int IdUser;
     private static int IdEmp;
@@ -25,6 +26,10 @@ public class Singleton {
     private static String Celular;
     private static String UUID;
     private static String Direccion;
+    private static String FullName;
+    private static String Domicilio;
+    private static String NumCell;
+
     private static ArrayList<Imagenes> arrImagenes;
 
     private static boolean isCameraPresent;
@@ -32,7 +37,8 @@ public class Singleton {
 
     public Singleton() { }
 
-    public Singleton(int modulo, int idUser, String username) {
+    public Singleton(int _ID, int modulo, int idUser, String username, String _fullName, String _domicilio, String _numCell) {
+        ID = _ID;
         Modulo = modulo;
         IdUser = idUser;
         Username = username;
@@ -43,6 +49,17 @@ public class Singleton {
         isCameraPresent = false;
         isGPS = false;
         UUID = "";
+        FullName = _fullName;
+        Domicilio = _domicilio;
+        NumCell = _numCell;
+    }
+
+    public static int getID() {
+        return ID;
+    }
+
+    public static void setID(int ID) {
+        Singleton.ID = ID;
     }
 
     public static int getModulo() {
@@ -135,6 +152,30 @@ public class Singleton {
 
     public static void setUUID(String UUID) {
         Singleton.UUID = UUID;
+    }
+
+    public static String getFullName() {
+        return FullName;
+    }
+
+    public static void setFullName(String fullName) {
+        FullName = fullName;
+    }
+
+    public static String getDomicilio() {
+        return Domicilio;
+    }
+
+    public static void setDomicilio(String domicilio) {
+        Domicilio = domicilio;
+    }
+
+    public static String getNumCell() {
+        return NumCell;
+    }
+
+    public static void setNumCell(String numCell) {
+        NumCell = numCell;
     }
 
     public static void setIsCameraPresent(boolean isCameraPresent) {

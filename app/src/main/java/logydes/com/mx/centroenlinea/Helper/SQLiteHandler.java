@@ -31,10 +31,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     // Login Table Columns names
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_UID = "uid";
-    private static final String KEY_CREATED_AT = "created_at";
 
     private static final String KEY_USER_LABEL = "label";
     private static final String KEY_USER_DATA = "data";
@@ -42,13 +38,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     private static final String KEY_USER_USERNAME = "username";
     private static final String KEY_USER_IDUSER = "iduser";
-    private static final String KEY_USER_IDEMP = "idemp";
-    private static final String KEY_USER_EMPRESA = "empresa";
-    private static final String KEY_USER_IDUSERNIVELACCESO = "idusernivelacceso";
-    private static final String KEY_USER_REGISTROSPORPAGINA = "registrosporpagina";
-    private static final String KEY_USER_CLAVE = "clave";
-    private static final String KEY_USER_NOMBRECOMPLETOUSUARIO = "nombrecompletousuario";
-    private static final String KEY_USER_PARAM1 = "param1";
+    private static final String KEY_USER_FULLNAME = "fullname";
+    private static final String KEY_USER_DOMICILIO = "domicilio";
+    private static final String KEY_USER_NUMCELL = "numcell";
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -58,22 +50,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        /*
-
-        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"
-                + KEY_CREATED_AT + " TEXT" + ")";
-        */
-
-
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_USER_LABEL + " TEXT,"
                 + KEY_USER_DATA + " TEXT UNIQUE, "
                 + KEY_USER_USERNAME + " TEXT, "
                 + KEY_USER_IDUSER + " TEXT, "
-                + KEY_USER_MSG + " TEXT" + ");";
+                + KEY_USER_MSG + " TEXT,"
+                + KEY_USER_FULLNAME + " TEXT, "
+                + KEY_USER_DOMICILIO + " TEXT, "
+                + KEY_USER_NUMCELL + " TEXT "
+                + ");";
 
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -94,7 +81,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * Storing user details in database
      * */
 //    public void addUser(String label, String data, String msg, String created_at) {
-    public void addUser(String label, String data, String msg) {
+    public void addUser(String label, String data, String msg, String fullname, String domicilio, String celular) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -107,6 +94,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         values.put(KEY_USER_USERNAME, label);
         values.put(KEY_USER_IDUSER, data);
+
+        values.put(KEY_USER_FULLNAME, fullname);
+        values.put(KEY_USER_DOMICILIO, domicilio);
+        values.put(KEY_USER_NUMCELL, celular);
 
         // Inserting Row
         long id = db.insert(TABLE_USER, null, values);
@@ -136,18 +127,32 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 Log.w(TAG,"3: "+cursor.getString(3));
                 Log.w(TAG,"4: "+cursor.getString(4));
                 Log.w(TAG,"5: "+cursor.getString(5));
+                Log.w(TAG,"6: "+cursor.getString(6));
+                Log.w(TAG,"7: "+cursor.getString(7));
+                Log.w(TAG,"8: "+cursor.getString(8));
 
                 user.put(KEY_USER_LABEL, cursor.getString(1));
                 user.put(KEY_USER_DATA, cursor.getString(2));
                 user.put(KEY_USER_MSG, cursor.getString(5));
                 user.put(KEY_USER_USERNAME, cursor.getString(1));
                 user.put(KEY_USER_IDUSER, cursor.getString(2) );
+                user.put(KEY_USER_FULLNAME, cursor.getString(6));
+                user.put(KEY_USER_DOMICILIO, cursor.getString(7));
+                user.put(KEY_USER_NUMCELL, cursor.getString(8));
+
+                int val = 1;
+                if (user.get(KEY_ID) != null){
+                    val = Integer.valueOf(user.get(KEY_ID));
+                }
 
                 Singleton singleton = new Singleton(
+                        val,
                         0,
                         Integer.valueOf(user.get(KEY_USER_IDUSER)),
-                        user.get(KEY_USER_USERNAME)
-
+                        user.get(KEY_USER_USERNAME),
+                        user.get(KEY_USER_FULLNAME),
+                        user.get(KEY_USER_DOMICILIO),
+                        user.get(KEY_USER_NUMCELL)
                 );
 
             }
@@ -163,6 +168,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             this.onUpgrade(db, 0, 0);
             return this.getUserDetails();
 
+
         }
     }
 
@@ -177,8 +183,22 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         db.close();
 
-
         Log.d(TAG, "Deleted all user info from sqlite");
+    }
+
+    public void updateUsers() {
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_USER_FULLNAME,Singleton.getFullName()); //These Fields should be your String values of actual column names
+        cv.put(KEY_USER_DOMICILIO,Singleton.getDomicilio());
+        cv.put(KEY_USER_NUMCELL,Singleton.getNumCell());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_USER, cv, KEY_ID+"="+Singleton.getID(), null);
+
+        db.close();
+
+        Log.d(TAG, "update user info from sqlite");
     }
 
 }

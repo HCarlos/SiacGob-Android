@@ -2,20 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="logydes.com.mx.centroenlinea">
 
-    <!-- <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- <uses-permission android:name="android.permission.BLUETOOTH" /> -->
-    <!-- <uses-permission android:name="android.permission.USE_FINGERPRINT" />  -->
-    <!-- <uses-permission android:name="android.permission.CALL_PHONE" />  -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- <uses-permission android:name="android.permission.READ_SMS" /> -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!--
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -25,7 +21,7 @@
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
-
+    -->
     <application
         android:name=".Utils.AppController"
         android:allowBackup="true"
@@ -82,9 +78,8 @@
             android:name=".ImagenesActivity"
             android:label="@string/title_activity_imagenes"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
 
             <!-- Soporte ver 4.0 o preview -->
             <meta-data
@@ -100,14 +95,26 @@
             android:name=".ViewImageActivity"
             android:label="@string/title_activity_imagen_view"
             android:parentActivityName=".ImagenesActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
 
             <!-- Soporte ver 4.0 o preview -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ImagenesActivity" />
         </activity>
+
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile_view"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+
+            <!-- Soporte ver 4.0 o preview -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
