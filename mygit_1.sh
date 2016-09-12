@@ -11,7 +11,7 @@ git status
 
 git add .
 
-git commit -m "Public version 04"
+git commit -m "Public version 04b"
 
 git push -u origin master --force
 
