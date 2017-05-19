@@ -109,8 +109,12 @@ public class getImagenes {
                                 String _nombre = String.valueOf(rec.getString("nombre"));
                                 String _celular = String.valueOf(rec.getString("celular"));
                                 int _so_mobile = Integer.valueOf(rec.getString("so_mobile"));
-                                double _latitud = Double.valueOf(rec.getString("latitud"));
-                                double _longitud = Double.valueOf(rec.getString("longitud"));
+                                double _latitud = 0.00;
+                                double _longitud = 0.00;
+                                if ( !rec.getString("latitud").isEmpty() && !rec.getString("longitud").isEmpty() ) {
+                                    Double.valueOf(rec.getString("latitud"));
+                                    Double.valueOf(rec.getString("longitud"));
+                                }
                                 int _modulo = Integer.valueOf(rec.getString("modulo"));
                                 String _cmodulo = String.valueOf(rec.getString("cmodulo"));
                                 int _megusta = Integer.valueOf(rec.getString("megusta"));

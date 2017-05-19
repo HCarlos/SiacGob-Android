@@ -25,7 +25,7 @@
         android:required="true" />
 
 
-
+0
     <application
         android:name=".Utils.AppController"
         android:allowBackup="true"
